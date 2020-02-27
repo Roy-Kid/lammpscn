@@ -85,6 +85,6 @@ cmake -C ../cmake./presets/minimal.cmake -D PKG_GPU=on ../cmake
 make 
 make install
 ```
-请注意，此时cmake 文件夹下会有一个名为lmp的可执行文件，此文件就是最终编译结果。如果您看这个名字不爽可以自行重命名，以后开始计算是所调用命令就以新名称命名。教程以下均使用lmp代指此文件。
+请注意，此时cmake 文件夹下会有一个名为lmp的可执行文件，此文件就是最终编译结果。如果您看这个名字不爽可以自行重命名，以后开始计算所调用命令就以新名称替换。教程以下均使用lmp/lmp_mpi/lmp_serial均/lmp_gpu均代指此文件。
 
 

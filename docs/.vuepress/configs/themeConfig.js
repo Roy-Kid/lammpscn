@@ -20,6 +20,7 @@ module.exports = {
     sidebar: {
         '/tutorial/': require('./sidebar_tutorial.js')(),
         '/command/': require('./sidebar_command.js')(),
+        '/moduling/': require('./sidebar_moduling.js')(),
     },
 
     editLinks: true,

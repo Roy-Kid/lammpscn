@@ -5,7 +5,7 @@ module.exports = function() {
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/command/general/', '概述'],
+                ['/command/general/', '概览'],
             ]
         },
 
@@ -14,7 +14,7 @@ module.exports = function() {
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/command/fix/', '概述'],
+                ['/command/fix/', '概览'],
 
             ]
         },
@@ -24,7 +24,7 @@ module.exports = function() {
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/command/fix/', '概述'],
+                ['/command/fix/', '概览'],
 
             ]
         },
