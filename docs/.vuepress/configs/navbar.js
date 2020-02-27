@@ -7,5 +7,10 @@ module.exports = [
     {
         text: '命令',
         link: '/command/'
+    },
+
+    {
+        text: '建模',
+        link: '/moduling/'
     }
 ]

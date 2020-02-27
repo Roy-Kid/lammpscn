@@ -1,13 +1,18 @@
 {
-	"scripts": {
-		"dev": "vuepress dev docs",
-		"build": "vuepress build docs"
-	},
-	"dependencies": {
-		"vuepress": "^1.3.1",
-		"vuepress-theme-teadocs": "^1.3.7"
-	},
-	"devDependencies": {
-		"vuepress-plugin-auto-sidebar": "^1.3.1"
-	}
+  "name": "lammpscn",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/Roy-Kid/lammpscn.git",
+  "author": "Roy_Kid <lijichen365@126.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.3.1",
+    "vuepress-plugin-flowchart": "^1.4.3",
+    "vuepress-theme-teadocs": "^1.3.7",
+    "vuepress": "1.3.1" 
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  }
 }

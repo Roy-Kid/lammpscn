@@ -1,5 +1,5 @@
 module.exports = ctx => ({
-    base: '/lammpscn/',
+
     lang : 'zh-CN',
     title : 'LAMMPS中文站',
     discription : '这是LAMMPS的非官方中文站，提供不保证正确的教程和命令翻译',
@@ -10,5 +10,8 @@ module.exports = ctx => ({
     extraWatchFiles : [
         '.vuepress/configs/sidebar_tutorial.js',
         '.vuepress/configs/navbar.js',
+        '.vuepress/configs/sidebar_command.js',
+        '.vuepress/configs/sidebar_moduling.js',
     ],
 });
+

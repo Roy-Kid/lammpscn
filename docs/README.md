@@ -11,7 +11,7 @@ heroImage: /logo.gif
 actionText: 快速开始 →
 actionLink: /tutorial/
 action2Text: 命令速查 →
-action2Link: /tutorial/
+action2Link: /command/
 features:
 - title: LAMMPS 是什么？
   details: LAMMPS是美国Sandia国家实验室开发的分子动力学计算包, 以C++构建，兼容多种并行框架，并以GPL协议开源
