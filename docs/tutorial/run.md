@@ -82,6 +82,9 @@ nohup mpirun -np 4 lmp_mpi -in in.file &
 ### -pk
 调用第三方包，如gpu等。
 
+### -sf
+自动在适用的命令前增加前缀，以开始特殊版本的命令，如gpu/lj/cut等。
+
 ### -restart2data 
 
 直接将restart文件转换为data文件，

@@ -10,7 +10,17 @@ module.exports = [
     },
 
     {
+        text: '专栏',
+        link: '/column/'
+    },
+
+    {
         text: '建模',
         link: '/moduling/'
+    },
+
+    {
+        text: '我们',
+        link: '/contact/'
     }
 ]

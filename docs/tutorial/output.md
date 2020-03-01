@@ -1,7 +1,59 @@
 # 系统输出
 
-当LAMMPS读取完input文件之后，将会把重要信息输出到命令行和log文件中，然后开始初始化。初始化结束后，会将系统信息，包括系统版本，占用内存和初始的热力学状态输出出来。在计算过程中，会周期地输出当前的热力学信息。每一次运算阶段结束后，将会输出最终的热力学信息和时间消耗。
+当LAMMPS读取完input文件之后，将会把重要信息输出到命令行和log文件中，然后开始初始化。初始化结束后，会将系统信息，包括系统版本，占用内存和初始的热力学状态输出出来。在计算过程中，会周期地输出当前的热力学信息。每一次运算阶段结束后，将会输出最终的热力学信息和系统统计。
 
+## 热力学信息
+
+::: tip
+
+更多定制方案请参考[thermo](https://lammps.sandia.gov/doc/thermo.html)[thermo_style](https://lammps.sandia.gov/doc/thermo_style.html)[thermo_modify](https://lammps.sandia.gov/doc/thermo_modify.html)
+
+:::
+
+```
+thermo N
+    N #每N步输出一次热力学状态
+
+thermo_style style args
+    style = one or multi or custom
+    args = #one 和 multi 没有参数可选
+        custom args =
+           step #输出当前总步数
+           elapsed #输出本次run到现在的步数
+           dt #间隔时间
+           time #模拟时长
+           temp #体系温度
+           press #体系压力
+           pe #势能
+           ke #动能
+           etotal #总能量（pe+ke）
+           enthalpy #焓 （etotal + press×vol）
+           evdwl #范德华力的能量
+           ecoul #库仑力的能量
+           epair #分子对间的能量（evdwl + ecoul）
+           ###e开头的都是能量就是了###
+           vol #体积
+           density #密度
+           lx，ly，lz #盒子的长宽高
+           xlo，xhi，ylo，yhi，zlo，zhi#盒子边界的位置
+           fmax#受到的最大的力
+           ndanger#危险原子列表的数量
+           c_ID[]#输出compute的数据           
+
+thermo_modify keyword value...
+```
+
+通过三个命令组合来输出你想要的热力学信息。
+
+thermo设定了输出的间隔。
+
+thermo_style指明了输出的格式。
+
+当style = custom时，就可以自己手动指定需要输出什么了。
+
+还一种情况，如果通过fix ave/time来做时间平均的话，可以用f_ID来输出相应的平均数据。
+
+## 系统统计
 ```
 Loop time of 2.81192 on 4 procs for 300 steps with 2004 atoms
 

@@ -78,8 +78,34 @@ cd lammps #进入源码根目录
 mkdir build
 cd build
 
-cmake -C ../cmake./presets/minimal.cmake -D PKG_GPU=on ../cmake 
+cmake -C ../cmake./presets/minimal.cmake ../cmake 
+
+# 如果这里还要编译GPU模块，那么请加上：
+-D PKG_GPU=on      #include GPU package
+-D GPU_API=cuda    # value = opencl (default) or cuda
+-D GPU_PREC=mixed  # precision setting
+                   # value = double or mixed (default) or single
+-D GPU_ARCH=value  # hardware choice for GPU_API=cuda
+                   # value = sm_XX, see below
+                   # default is Cuda-compiler dependent, but typically sm_20
+-D CUDPP_OPT=value # optimization setting for GPU_API=cuda
+                   # enables CUDA Performance Primitives Optimizations
+                   # yes (default) or no
 ```
+
+ARCH的参数选择：
+![GPU_ARCH](/gpu_arch.jpg)
+
+```
+# 调用GPU来做加速，仅需要加入-sf -pk两个flag
+
+mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
+
+# -sf指在所有支持gpu加速的脚本命令前加上gpu前缀
+
+# 注意这里-pk gpu后跟的是节点数，几块gpu就填几
+```
+
 可以通过修改presets下的预置文件来决定哪些包需要安装。更多的参数选择请[查看](https://github.com/lammps/lammps/blob/master/cmake/README.md)。待配置完成后会出现配置结果详情，确认后：
 ```sh
 make 
