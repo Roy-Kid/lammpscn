@@ -2,7 +2,7 @@ module.exports = {
     logo:{
         text: 'LAMMPS',
         subText: '中文站',
-        image: '/favicon.ico',
+        image: '/icons/favicon.ico',
     },
 
     alert: [{

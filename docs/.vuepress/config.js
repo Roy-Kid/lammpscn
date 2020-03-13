@@ -1,9 +1,10 @@
-module.exports = ctx => ({
+module.exports =  ({
 
     lang : 'zh-CN',
     title : 'LAMMPS中文站',
     discription : '这是LAMMPS的非官方中文站，提供不保证正确的教程和命令翻译',
     head : require('./configs/head'),
+    lastUpdated: '上次更新',
     theme : 'teadocs',
     themeConfig : require('./configs/themeConfig'),
     plugins : require('./configs/plugins'),
@@ -13,5 +14,10 @@ module.exports = ctx => ({
         '.vuepress/configs/sidebar_command.js',
         '.vuepress/configs/sidebar_moduling.js',
     ],
+    markdown: {
+        extendMarkdown: md =>{
+            md.use(require('markdown-it-imsize'))
+        }
+    }
 });
 

@@ -43,7 +43,16 @@ thermo_style style args
 thermo_modify keyword value...
 ```
 
-通过三个命令组合来输出你想要的热力学信息。
+热力学数据输出的频率和格式主要由thermo、thermo_style和thermo_modify命令来设置。
+
+其中thermo_style命令用于具体指定所需要输出的参量。如LAMMPS预定义的一些关键字（如press、etotal等）所代表的参量，以及另外由compute、fix或variable三个命令所得到的参量值，具体可通过c_ID、f_ID或v_name关键字引用。在这三种情况下，compute、fix或variable三个命令得到的量作为thermo_style custom命令的传入值时必须是一个全局量global，如体系中某一区域（group）的势能、温度等。如果给thermo_style custom命令传入的是非全局量值，则会报错，如：
+
+```
+compute    1 all pe/atom
+thermo_style   custom step temp pe etotal c_1
+```
+值得注意的是，热力学输出量既可以是“广度量”也可以是“强度量”。前者与系统中的原子数成比例，如体系总能，而后者则与系统中的原子数无关，如体系温。thermo_modify命令的norm参数用以决定是否对广度量进行归一化操作。compute和fix命令既可以产生广度量也可以产生强度量。具体可参见相关的说明文档。variable命令的类型为equal时仅能产生强度量值，若需要将此时的强度量值转变为广度量值，可通过在公式中除原子数（natoms）的方式得到。
+
 
 thermo设定了输出的间隔。
 
