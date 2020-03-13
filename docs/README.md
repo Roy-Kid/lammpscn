@@ -2,11 +2,7 @@
 home: true
 
 title: LAMMPS 中文站
-meta: 
-  - name: keywords
-    content: lammps中文 lammps lammps教 lammps官网
-  - name: description
-    content: lammps的非官方中文文档，lammps教程
+
 heroImage: /logo.gif
 actionText: 快速开始 →
 actionLink: /tutorial/
