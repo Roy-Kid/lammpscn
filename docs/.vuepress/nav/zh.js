@@ -1,26 +1,26 @@
 module.exports = [
     {
         text: '开始',
-        link: '/tutorial/'
+        link: '/zh/tutorial/'
     },
 
     {
         text: '命令',
-        link: '/command/'
+        link: '/zh/command/'
     },
 
     {
         text: '专栏',
-        link: '/column/'
+        link: '/zh/column/'
     },
 
     {
         text: '建模',
-        link: '/moduling/'
+        link: '/zh/moduling/'
     },
 
     {
         text: '我们',
-        link: '/contact/'
+        link: '/zh/contact/'
     }
 ]

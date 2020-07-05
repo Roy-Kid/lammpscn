@@ -1,12 +1,12 @@
 module.exports = function() {
     return[
         {
-            title: '建模',
+            title: 'moduling',
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/moduling/', '概览'],
-                ['/moduling/moltemplate', 'moltemplate'],
+                ['/en/moduling/', 'overview'],
+                ['/en/moduling/moltemplate', 'moltemplate'],
             ]
         },
     ]
