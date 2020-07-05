@@ -5,16 +5,14 @@ title: LAMMPS 中文站
 
 heroImage: /logo.gif
 actionText: 快速开始 →
-actionLink: /tutorial/
+actionLink: /zh/tutorial/
 action2Text: 命令速查 →
-action2Link: /command/
+action2Link: /zh/command/
 features:
-- title: LAMMPS 是什么？
-  details: LAMMPS是美国Sandia国家实验室开发的分子动力学计算包, 以C++构建，兼容多种并行框架，并以GPL协议开源
+- title: 为什么选择LAMMPS？
+  details: 开源；高效；力场全面；易于扩展
 - title: LAMMPS 可以做什么？
-  details: 在各种硬件和集群上进行各种力场和颗粒的动力学计算
-- title: LAMMPS 不能做什么？
-  details: 可视化界面，构建模型和复杂数据处理
+  details: 粗粒化模型；全原子；有限尺寸的球或椭球粒子; 偶极子; 刚体
 footer: 署名-非商业性使用-相同方式共享 3.0 中国大陆 (CC BY-NC-SA 3.0 CN) | Copyright © 2020-present Roy Kid
 ---
 
