@@ -13,6 +13,8 @@ module.exports =  ({
         '.vuepress/sidebar/tutorial_en',
         '.vuepress/sidebar/moduling_zh',
         '.vuepress/sidebar/moduling_en',
+        '.vuepress/sidebar/column_zh',
+        '.vuepress/sidebar/column_en',
         '.vuepress/nav/zh.js',
         '.vuepress/nav/en.js',
 
@@ -20,7 +22,8 @@ module.exports =  ({
     markdown: {
         extendMarkdown: md =>{
             md.use(require('markdown-it-imsize'))
-        }
+        },
+        lineNumbers: true,
     },
 
     locales:{

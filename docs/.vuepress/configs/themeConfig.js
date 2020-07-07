@@ -29,7 +29,8 @@ module.exports = {
             sidebar: {
                 '/zh/tutorial/': require('../sidebar/tutorial_zh')(),
                 '/zh/command/': require('../sidebar/command_zh')(),
-                '/zh/moduling/': require('../sidebar/moduling_zh')(),
+                '/zh/tools/': require('../sidebar/tools_zh')(),
+                '/zh/column/': require('../sidebar/column_zh')(),
             },
 
         },
@@ -46,7 +47,8 @@ module.exports = {
             sidebar: {
                 '/en/tutorial/': require('../sidebar/tutorial_en')(),
                 '/en/command/': require('../sidebar/command_en')(),
-                '/en/moduling/': require('../sidebar/moduling_en')(),
+                '/en/tools/': require('../sidebar/tools_en')(),
+                '/en/column/': require('../sidebar/column_en')(),
             },
 
         },
