@@ -2,7 +2,7 @@ module.exports =  ({
 
 
     head : require('./configs/head'),
-    lastUpdated: '上次更新',
+    
     theme : 'teadocs',
     themeConfig : require('./configs/themeConfig'),
     plugins : require('./configs/plugins'),
@@ -31,11 +31,13 @@ module.exports =  ({
             lang: '简体中文',
             title: 'LAMMPS教程',
             description : '这是LAMMPS的教程网站，提供不保证正确的教程和命令翻译',
+            lastUpdated: '上次更新',
         },
         '/en/': {
             lang: 'English',
             title: 'LAMMPS tutorial',
-            description: 'This is a unofficial LAMMPS tutorial community'
+            description: 'This is a unofficial LAMMPS tutorial community',
+            lastUpdated: 'last updated',
         }
     }
 });
