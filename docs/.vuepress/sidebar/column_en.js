@@ -1,12 +1,12 @@
 module.exports = function() {
     return[
         {
-            title: '专栏',
+            title: 'introduce to computer',
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/zh/moduling/', '概览'],
-                ['/zh/moduling/basic_cs', '计算机基础'],
+                ['/zh/column/', 'overview'],
+                ['/zh/column/basic_cs/compile', 'How GCC compiles'],
             ]
         },
     ]
