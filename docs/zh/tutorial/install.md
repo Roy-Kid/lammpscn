@@ -77,10 +77,35 @@ watch -n 5 nvidia-smi #每5秒输出一次显卡状态
 cd lammps #进入源码根目录
 mkdir build
 cd build
+```
 
-cmake -C ../cmake./presets/minimal.cmake ../cmake 
+这里我们需要讨论一下**如何选择需要编译的包**。众所周知，巴比塔不是一伙人建成的，同样，LAMMPS开发组也不会事必躬亲，所以肯定要借助别人的代码来完善功能。由于这些代码的贡献者不同，因此很多功能不能合并到主线当中；又或者是有些包是只有少部分人会用到或者还要依赖其他的工具，因此给出了一个选项，允许各位选择什么包需要编译，什么包不需要。这个文件就叫*.cmake*。
+
+> 什么是编译？
+
+我们打开这个cmake文件，它位于根目录下的cmake文件夹的presets中：
+
+```
+# lammps/cmake/presets/minimal.cmake
+# 预设文件只打开了少量常用的包，使得编译速度最快且大部分脚本可以使用
+
+set(ALL_PACKAGES KSPACE MANYBODY MOLECULE RIGID)
+
+foreach(PKG ${ALL_PACKAGES})
+  set(PKG_${PKG} ON CACHE BOOL "" FORCE)
+endforeach()
+
+```
+
+这几行代码是 *不言自明* 的。很显然，`set()`声明了一个名为`ALL_PACKAGE` 的集合，集合中包括了一些包的名称。然后在一个`foreach`循环中，将`ALL_PACKAGE`的包全部`ON`。因此如果你需要加减什么包，可以自行从这个集合中添加或者移除。presets里同时还提供了其他的预设文件可供参考。
+
+```
+cmake -C ../cmake/presets/minimal.cmake ../cmake 
+```
+
 
 # 如果这里还要编译GPU模块，那么请加上：
+```
 -D PKG_GPU=on      #include GPU package
 -D GPU_API=cuda    # value = opencl (default) or cuda
 -D GPU_PREC=mixed  # precision setting
@@ -94,7 +119,7 @@ cmake -C ../cmake./presets/minimal.cmake ../cmake
 ```
 
 ARCH的参数选择：
-![GPU_ARCH](/gpu_arch.jpg)
+![GPU_ARCH](/tutorial/install/gpu_arch.jpg)
 
 ```
 # 调用GPU来做加速，仅需要加入-sf -pk两个flag

@@ -1,6 +1,6 @@
 module.exports = [
     ['link', { rel: 'icon', href: '/icons/favicon.ico'}],
-    ['link', { rel: 'manifest', href: '../public/manifest.json' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel:'apple-touch-icon', href:'/icons/apple-touch-icon.png'}],
 
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],

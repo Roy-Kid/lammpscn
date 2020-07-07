@@ -15,8 +15,8 @@ module.exports = [
     },
 
     {
-        text: 'moduling',
-        link: '/en/moduling/'
+        text: 'tools',
+        link: '/en/tools/'
     },
 
     {

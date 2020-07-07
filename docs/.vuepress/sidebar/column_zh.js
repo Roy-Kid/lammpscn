@@ -1,13 +1,14 @@
 module.exports = function() {
     return[
         {
-            title: 'moduling',
+            title: '计算机基础',
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/en/moduling/', 'overview'],
-                ['/en/moduling/moltemplate', 'moltemplate'],
+                ['/zh/column/', '概览'],
+                ['/zh/column/basic_cs/compile', 'GCC编译基础'],
             ]
         },
     ]
 }
+

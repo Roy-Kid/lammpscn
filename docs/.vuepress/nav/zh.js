@@ -15,8 +15,8 @@ module.exports = [
     },
 
     {
-        text: '建模',
-        link: '/zh/moduling/'
+        text: '工具',
+        link: '/zh/tools/'
     },
 
     {
