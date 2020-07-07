@@ -5,14 +5,14 @@
 ## 内容贡献者
 
 * 李吉辰, 中国科学技术大学；
-* 赵一农，约翰逊霍普金斯大学；
+* 赵一农, 约翰逊霍普金斯大学；
+* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics),中国科学技术大学；
+* [三级狗](https://www.zhihu.com/people/san-ji-gou-13/posts);
 * Shafat Mubin，PennState;
-* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics)，中国科学技术大学；
 
 ## 网站维护者
 
 * 李吉辰
-* SmartEPSH
 
 ## 联系方式
 
