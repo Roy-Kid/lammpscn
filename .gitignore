@@ -1,3 +1,6 @@
-node_modules
-dist
-docs/.vuepress/dist
+/node_modules
+package-lock.json
+yarn-error.log
+yarn.lock
+/.vscode
+/docs/.vuepress/dist
