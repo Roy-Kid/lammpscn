@@ -1,31 +1,33 @@
-# 贡献者名单
+# Contributors List
 
-感谢各位在百忙之中向本网站贡献内容，鼎力相助，不胜感激！
+Thank you for your contribution to this website during your busy schedule. Thank you very much!
 
-## 内容贡献者
+## Contributors
 
-* Roy Kid, 青岛科技大学；
-* 杨越，陕西204西安近代化学研究所；
-* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics)，中国科学技术大学；
+* Roy Kid, University of Science & Technology of China；
+* Ethan, Johns Hopkins University;
+* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics)，University of Science & Technology of China；
+* [三级狗](https://www.zhihu.com/people/san-ji-gou-13/posts);
+* Shafat Mubin, PennState;
 
-## 网站维护者
+
+## Website maintainer
 
 * Roy Kid
-* SmartEPSH
 
-## 联系方式
+## contact information
 
     * Roy Kid：
         * 邮箱：lijichen365@126.com
 
 ## 买杯咖啡？
 
-网站的内容与代码托管在[GitHub](https://github.com/Roy-Kid/lammpscn)之上，采取署名（BY）-非商业性使用（NC）-相同方式共享（SA）协议。为了项目能够健康持续的发展下去，我们期望获得相应的资金支持以维持服务器开销。您可以通过下列的方法来赞助我们的开发。
+The content and code of the website are hosted in [GitHub]（https://github.com/Roy-Kid/lammpscn）CC BY-NC-SA 3 CN protocol is adopted. In order to maintain the healthy and sustainable development of the project, we expect to obtain the corresponding financial support to maintain the server overhead. You can sponsor our development in the following ways.
 
-### 一次性赞助
+### One time sponsorship
 
 ![二维码](/qt.jpg =200x200)
 
-### 周期性赞助
+### Periodic sponsorship
 
-如果您从事分子动力学研究多年，对LAMMPS有深入的理解，您对本社区最好的回馈就是贡献力所能及的内容。在各位的帮助之下，我相信一个完善友好且不断更新的社区会很快建立起来，这也是开源带来的魅力。
+If you have been engaged in molecular dynamics research for many years and have a deep understanding of lamps, your best feedback to the community is to contribute what you can. With your help, I believe that a perfect, friendly and constantly updated community will be established soon, which is also the charm of open source.

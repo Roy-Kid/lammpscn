@@ -2,6 +2,23 @@
 
 <DIV class="author">作者: <i>三级狗</i></DIV>
 
+## 编译器
+
+### Linux部分
+
+在Linux中 主流编译器为Clang以及GNU（GCC，G++） GCC中支持的语言常用的有 C、C++、Java、Object-C 结构类似于一个标准Unix编译器
+
+而Clang是支持C++，CObject-C，Object-C++语言的编译器前端 其底层采用了LLVM底层虚拟机，在编译Object-C时对比GCC快三倍
+
+总体上：
+
+* GCC特性：
+除支持C/C++/ Objective-C/Objective-C++语言外，还是支持Java/Ada/Fortran/Go等；当前的Clang的C++支持落后于GCC；支持更多平台；更流行，广泛使用，支持完备。
+
+* Clang特性：
+编译速度快；内存占用小；兼容GCC；设计清晰简单、容易理解，易于扩展增强；基于库的模块化设计，易于IDE集成；出错提示更友好
+
+
 ## 材料准备
 
 > 为了方便演示和讲解，在这里提前准备好几个简单的文件：`test.cpp` `test.h` `main.cpp` 文件内容如下：
@@ -214,6 +231,9 @@ g++ main.o libtest.a
 ![static_compile](/column/basic_cs/compile/static_compile.jpg)
 
 ### 动态编译
+
+> Linux/UnixLike平台的动态链接库一般为.so为结尾（shared object）
+> Windows平台的动态链接库一般为.dll为结尾（Dynamic Link Library ）
 
 动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。不同的应用程序如果调用相同的库，那么在内存里只需要有一份该共享库的实例，规避了空间浪费问题。
 
