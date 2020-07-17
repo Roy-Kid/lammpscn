@@ -21,7 +21,9 @@ module.exports =  ({
     ],
     markdown: {
         extendMarkdown: md =>{
+            md.set({html: true})
             md.use(require('markdown-it-imsize'))
+            md.use(require('markdown-it-katex'))
         },
         lineNumbers: true,
     },
