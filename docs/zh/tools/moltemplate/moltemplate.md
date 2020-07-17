@@ -6,7 +6,7 @@
 
 如图所示，整个技术栈分为：
 
-![flowchart](/moltemplate_flowchart.jpg)
+![flowchart](/tools/moltemplate/moltemplate_flowchart.jpg)
 
 1. 基本绘图：绘制基本的单元，如高分子结构单元，单个水分子或者甲烷分子等;
 2. 数据文件：导出成常见格式的数据文件，如PDB，XYZ;

@@ -2,6 +2,8 @@ module.exports = [
     ['link', { rel: 'icon', href: '/icons/favicon.ico'}],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['link', { rel:'apple-touch-icon', href:'/icons/apple-touch-icon.png'}],
+    ['link', { rel:'stylesheet', href:'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'}],
+
 
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],

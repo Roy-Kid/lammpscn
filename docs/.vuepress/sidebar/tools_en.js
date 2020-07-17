@@ -1,12 +1,15 @@
 module.exports = function() {
     return[
         {
-            title: 'moduling',
+            title: 'moltemplate',
             collapsable: true,
             sidebarDepth: 3,
             children: [
                 ['/zh/tools/', 'overview'],
-                ['/zh/tools/moduling/moltemplate', 'moltemplate'],
+                ['/zh/tools/moltemplate/moltemplate', 'basic tutorial'],
+                ['/zh/tools/moltemplate/opls', 'modeling via OPLS'],
+                ['/zh/tools/moltemplate/packmol', 'packing small molecules via Packmol'],
+                ['/zh/tools/moltemplate/pdb-lmp', 'convert .pdb to LAMMPS input'],
                 
             ]
         },
