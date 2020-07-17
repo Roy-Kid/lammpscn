@@ -42,7 +42,7 @@ jump SELF lp
 ```
 通过这些命令的组合，就能构建出不同类型的循环。
 
-## 判断
+## 分支
 
 ```
 if boolean then t1 t2 ... elif boolean f1 f2 ... elif boolean f1 f2 ... else e1 e2

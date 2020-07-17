@@ -1,43 +1,66 @@
-# 脚本入门
+# Getting started with script
 
 ::: tip
-本节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的5.command一节。
+This section of tutorial navigate to the official [manual](https://lammps.sandia.gov/doc/Manual.html): 5.1-5.3 
 :::
 
-LAMMPS的脚本语法风格是类UniX风格；
-LAMMPS的脚本分为input和data两部分；
+* LAMMPS input script is Unix-like format;
+* LAMMPS read the script and set command line-by-line until some commands start simulation;
+* Thus many setting commands are not sequential, however:
+* Some commands are only valid when they follow others;
+* Some commands will use values that be set by precede command.
 
-## input scripts
 
-::: tip
-本小节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的5.command一节。
-:::
+## grammar of script
 
-### 语法规则
+1. Each non-blank line in the input script is treated as a command. 
+2. LAMMPS commands are case sensitive. 
+3. Command names are lower-case, so upper case letters may be used in file names or user-chosen ID strings.
+2. All characters from the first “#” character onward are treated as a comment and discarded;
+3. Like Unix, both `$` and `${}` represent variables. The difference is that a single dollar can only be followed by one **character**, `${}` which allows spaces and expression;
 
-LAMMPS命令大小写敏感；脚本的每一行将会是一条指令
+```
+variable X equal (xlo+xhi)2+sqrt(v_area)
+region 1 block $X 2 INF INF EDGE EDGE # $ usage
+```
+It will immediately evaluate the mathematical expressions in `$()`, or for C style format control.
 
-1. 若一条命令过长需要换行，于行末添加"&"，LAMMPS会将本行于下一行视为同一行；
-2. 若一行开头字符为"#"， 本行将会被认为是注释而被忽略；
-3. 与Unix相似，"$"和"${}"都表示变量。区别在于，单$后只能跟一个单词，${}其中允许空格和其他表达式；
-4. 与其他编程语言相似，单词间使用空格隔开；
-5. 一行第一个单词为命令名，其后的所有单词均为参数；
-6. 单引号与双引号包裹的一串单词被视为一个参数，三引号包裹的多行被视为一个参数；
+The above formula is equivalent to：
+```
+region 1 block $((xlo+xhi)2+sqrt(v_area)) 2 INF INF EDGE EDGE # $()usage 
+print "Final energy per atom: $(pe/atoms:%10.3f) eV/atom" # formate control
+```
 
-### 脚本结构
+Nesting is not allowed in any form of '$', the following will not be allowed:
 
-一个LAMMPS input script通常分为四部分：
+```
+print    "B2 = ${$x-1.0}"
+```
+
+But you can use the `v_` variable instead of:
+
+```
+print    "B2 = $(v_x-1.0)"
+```
+
+4. Similar to other programming languages, tokens are separated by spaces;
+5. The first word in a line is the command name, and all subsequent words are parameters;
+6. If a command is too long to line break, add a `$`at the end of this line; A string of words wrapped in single quotation and double quotation is regraded as a parameter, and triple quotation can wrap multiple lines as a single parameter.
+
+## structure of script
+
+A LAMMPS input script typically has 4 parts：
 
     1. Initialization；
     2. Data reading；
     3. Settings；
     4. Running；
 
-初始化和定义部分通常仅需说明一次，而设置和运行可以重复多次；如在定义好体系后，设置，计算，修改设置，再运算。以下会给出常用的参数，其他大量的功能请到手册中查询。
+The initialization and definition part usually only needs to be explained once, while the setting and running can be repeated many times; for example, after defining the system, set, run, reset, and run again. Common commands are given below. For other functions, please refer to the manual.
 
-#### Initialization 初始化
+### Initialization 
 
-定义与系统相关的参数，如：
+Set parameters about system 
 
 * units 
 * dimension 
@@ -47,24 +70,24 @@ LAMMPS命令大小写敏感；脚本的每一行将会是一条指令
 * pair_style & pair_coeff
 * dihedral_style & dihedralcoeff
 
-#### Data input 模型读取
+### Data input 
 
-读取构建的模型数据，或者读取restart文件：
+read model information or restart file
 
 * read_data
 * read_restart
 
-#### Settings 设置
+### Settings 
 
-设定系统全局的温度，压力等，设定系统局部的受力，限制等；使用计算命令输出参数等。
+Set the global temperature and pressure of the system, set the local stress and limit of the system, and output the parameters with the calculation command
 
 * neighbor
 * fix
 * compute
 
-#### Running 炼丹
+### Running 
 
-开始计算。
+start the simulation
 
 * minimize
 * run
@@ -72,97 +95,103 @@ LAMMPS命令大小写敏感；脚本的每一行将会是一条指令
 ## input data
 
 ::: tip
-本小节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的Commands-read_data-Format of a data file一节。
+
+This section of tutorial navigate to the official [manual](https://lammps.sandia.gov/doc/Manual.html): read_data-Format of a data file
 :::
 
-data文件指由别的软件建立好，供LAMMPS读取的关于粒子位置，拓扑等信息的文件，由*开头（header）*和*主体（body）*组成，并不固定。即，有一些参数，如势函数的值，既可以在data文件中提供，也可以在input文件中提供。
+Data file refers to a file contains particle coordinates, topology and other information, which usually established by other software. It is composed of *head* and *body* section. 
 
-data文件的*开头*部分。data文件第一行必须是由#号开头的注释，注释内容不定。接下来会逐行解读系统信息。由“lo/hi”指定盒子尺寸，“dimension”指定维度，“boundary”说明边界条件等。
+*head* of data file: the first line must start with `#` comment, the content is not necessary. Next it will interpret system properties line-by-line.
 
-data文件的*主体*部分，展示了导入软件的模型信息，包括粒子坐标，键接信息，键角信息等。
+*body* of data file: record the model information, such as coordinates, bonds, angles, dihedrals and so on.
 
-## 举个栗子
+## a crude example
 
-这是一个简单的[高分子拉伸模拟](https://icme.hpc.msstate.edu/mediawiki/index.php/Deformation_of_Amorphous_Polyethylene)，我们以其中的弛豫部分为例，讲解LAMMPS脚本结构
+This is a simple [polymer deformation simulation](https://icme.hpc.msstate.edu/mediawiki/index.php/Deformation_of_Amorphous_Polyethylene)，We take the relaxation part as an example to explain the lamps script structure
 
 ```
 # Initialization
-units		real   # 指定系统采取的单位
-boundary	p p p   # 指定边界条件
-atom_style	molecular   # 指定粒子类型
+units		real   # Specify the unit taken by the system
+boundary	p p p   # Specify boundary conditions
+atom_style	molecular   # Atom types
 
 # Data reading
-read_data	polymer.data   # 读入模型信息
+read_data	polymer.data   # Read in model 
 
-# Setting->Atom definition
-bond_style      harmonic   # 类型
-bond_coeff	1 350 1.53   # 势函数参数
+# Setting 
+bond_style      harmonic   
+bond_coeff	1 350 1.53   
+
 angle_style     harmonic  
 angle_coeff	1 60 109.5
+
 dihedral_style	multi/harmonic
 dihedral_coeff	1 1.73 -4.49 0.776 6.99 0.0
+
 pair_style	lj/cut 10.5
 pair_coeff	1 1 0.112 4.01 10.5
 
 #####################################################
-# Setting->system definition
-velocity 	all create 500.0 1231   # 给定初始化速度
-fix		1 all npt temp 500.0 500.0 50 iso 0 0 1000 drag 2   # 设置NPT系综，设定温度
+# Setting 
+velocity 	all create 500.0 1231   # Given initialization speed
+fix		1 all npt temp 500.0 500.0 50 iso 0 0 1000 drag 2   # Set NPT ensemble and temperature
 thermo_style	custom step temp press
-thermo          100   # 输出热力学参数
-timestep	0.5   # 时间步长
-run		50000   # 运行总步数
-unfix 1   # 取消设定
+thermo          100   # Output thermodynamic parameters
+timestep	0.5   # time step
+run		50000   # Total simulation steps
+unfix 1   # Cancel fix command 
 unfix 2
-write_restart 	restart.dreiding2   # 输出重启文件
+write_restart 	restart.dreiding2   # Output a file for restart
 ```
 
-由此我们可以看出，既然脚本是逐行解释，那么我们只需要按照正常的思路给出相应的参数即可。至于通过什么命令，命令怎么使用，把手册当成字典就好了。
+From this, we can see that since the script is interpreted line by line, we only need to give the corresponding parameters according to the normal thinking. As for the commands to be passed and how to use them, the manual should be regarded as a dictionary.
 
-那么我们再来看Data数据（部分）。LAMMPS为了使原子和类型等之间区分，将所有的类型都映射成整数的id，那么我们就得到atom id，molecule id，type id等用整数表示的
+Let's look at the data (section). In order to distinguish between atoms and types, LAMMPS maps all types into the ID of integers. Then we get atom ID, molecular ID, type ID, etc. expressed in integers
 
 ```
-# Model for PE   # 描述，不可少
+# Model for PE   # NECESSARY comment
+                            # the number of 
+     10000     atoms        # atoms
+      9990     bonds        # bonds
+      9980     angles       # anngles
+      9970     dihedrals    # dihedral
 
-     10000     atoms   # 原子总数
-      9990     bonds   # 键总数
-      9980     angles   # 键角总数
-      9970     dihedrals    # 二面角总数
-
-         1     atom types   # 原子类型数
+         1     atom types   # type id
          1     bond types
          1     angle types
          1     dihedral types
 
-    0.0000   80.0586 xlo xhi   # 盒子的起止位置，指明大小
-    0.0000   80.0586 ylo yhi
-    0.0000   80.0586 zlo zhi
+    0.0000   80.0586 xlo xhi   # The beginning and ending 
+    0.0000   80.0586 ylo yhi   # position of the box, 
+    0.0000   80.0586 zlo zhi   # indicating the size
 
-Masses   # 原子质量：
+Masses   # atom mass：
 
          1          14.02
 
-Atoms   # 原子信息：atom-id molecule-id type-id x y z
+Atoms  
+# atom info：atom-id molecule-id type-id x y z
 
          1         1         1    8.6550   61.6668    5.4094
          2         1         1    8.6550   60.5849    6.4912
          3         1         1    7.5731   59.5030    6.4912
          4         1         1    6.4912   60.5849    6.4912
 
-Bonds    # 键接信息：bond-id，bond-type，id为1的原子和2相连
+Bonds    
+# bond info：bond-id，bond-type，atom with id 1 link to 2
 
          1         1         1         2
          2         1         2         3
          3         1         3         4
 
-Angles   # 键角信息
+Angles   
 
          1         1         1         2         3
          2         1         2         3         4
 
-ihedrals    # 二面角信息
+ihedrals    
 
          1         1         1         2         3         4
 ```
 
-由此，我们介绍完了input和data的格式，通过举一反三，可以宏观上对软件的操作有所了解。至于如何配置input文件，取决于各位设计的实验和需要计算的参数；至于如何生成有着成百上千原子的data文件，这个就是LAMMPS的局限了，我们需要其他的软件来做这件事。
+From this, we have introduced the format of input and data. By drawing inferences from one instance, we can understand the operation of the software on a macro level. As for how to configure the input file, it depends on the experiments you designed and the parameters to be calculated. As for how to generate data files with hundreds of atoms, this is the limitation of lammps. We need other software to do this.
