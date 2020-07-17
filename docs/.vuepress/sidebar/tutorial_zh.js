@@ -5,8 +5,9 @@ module.exports = function() {
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/zh/tutorial/', '概览'],
-                ['/zh/tutorial/install', '安装'],
+
+                ['/zh/tutorial/novice/', '概览'],
+                ['/zh/tutorial/novice/install/', '安装'],
                 ['/zh/tutorial/script_ele', '脚本入门'],
                 ['/zh/tutorial/run', '启动计算'],
                 ['/zh/tutorial/output', '系统输出'],
@@ -27,6 +28,18 @@ module.exports = function() {
                 ['/zh/tutorial/script_adv', '脚本进阶'],
                 
                 ['/zh/tutorial/balance', '负载均衡'],
+                
+              
+            ]
+        },
+
+        {
+            title: 'DIY LAMMPS',
+            collapsable: true,
+            sidebarDepth: 3,
+            children: [
+                ['/zh/tutorial/', '术语概念'],
+
                 
               
             ]

@@ -1,21 +1,22 @@
 {
   "name": "lammpscn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "repository": "https://github.com/Roy-Kid/lammpscn.git",
   "author": "Roy_Kid <lijichen365@126.com>",
-  "license": "BY-NC-SA 3.0 CN",
+  "license": "CC-BY-NC-SA-4.0",
   "bugs": {
     "url": "https://github.com/teadocs/numpy-cn/issues"
   },
   "dependencies": {
-    "@vuepress/plugin-google-analytics": "^1.0.2",
     "@vuepress/plugin-back-to-top": "*",
+    "@vuepress/plugin-google-analytics": "^1.0.2",
     "@vuepress/plugin-medium-zoom": "*",
     "@vuepress/plugin-pwa": "*",
     "@vuepress/theme-vue": "^1.0.2",
-    "vue-toasted": "^1.1.25",
     "markdown-it-imsize": "*",
+    "markdown-it-katex": "^2.0.3",
+    "vue-toasted": "^1.1.25",
     "vuepress": "*",
     "vuepress-plugin-baidu-google-analytics": "*",
     "vuepress-plugin-flowchart": "*",
