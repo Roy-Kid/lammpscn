@@ -7,6 +7,7 @@ module.exports = function() {
             children: [
                 ['/zh/column/', '概览'],
                 ['/zh/column/basic_cs/compile', 'GCC编译基础'],
+                ['/zh/column/basic_cs/compile_with_python', 'C++与Python混编'],
             ]
         },
     ]

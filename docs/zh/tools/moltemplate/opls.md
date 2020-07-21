@@ -20,7 +20,9 @@ $$ E_{\text {nonbonded }}=\sum_{i>j} f_{i j}\left(\frac{A_{i j}}{r_{i j}^{12}}-\
 
 with the combining rules: 
 
-$$ A_{i j}=\sqrt{A_{i i} A_{j j}}$ and $ C_{i j}=\sqrt{C_{i i} C_{j j}} $$
+$$ A_{i j}=\sqrt{A_{i i} A_{j j}}$$ 
+
+$$C_{i j}=\sqrt{C_{i i} C_{j j}} $$
 
 
 该力场在计算非间相互作用作用时，完全排除了1-2, 1-3对作用，而对于1-4对作用，采用了保留50%的策略。其他对相互作用，完全考虑；且对于LJ势参数，采用了Lorentz-Berthelot混合法则（几何平均，lammps的geometric）进行计算。
@@ -40,7 +42,16 @@ OPLS包含两套力场，OPLS-AA(全原子力场)和OPLS-UA（联合原子力场
     kspace_style pppm 0.0001
 ```
 
-为了自动分配拓扑链接的种类，请使用已经写好的[oplsaa.lt](http://www.moltemplate.org/examples/ethylene+benzene/oplsaa.lt)格式力场文件，或者在`moltemplate/force_fields`中
+力场文件从[这里](https://dasher.wustl.edu/tinker/distribution/params/oplsaa.prm)下载。
+```
+
+#atom       type  class   name           group          atomic number    mass    idk
+atom          1     1      F     "Fluoride -CH2-F (UA)"       9         18.998    1
+```
+
+接下来的参数部分均以`class`数值为准，不同原子间采用几何平均混合。
+
+使用moltemplate配合OPLSAA建模，为了自动分配拓扑链接的种类，请使用已经写好的[oplsaa.lt](http://www.moltemplate.org/examples/ethylene+benzene/oplsaa.lt)格式力场文件，或者在`moltemplate/force_fields`中自取
 
 ## 单独用OPLSAA力场
 
@@ -162,16 +173,23 @@ moltemplate.sh system.lt
 
 ## 联合TIP4P力场
 
-全原子OPLSAA通常需要配合溶液使用。如果仅仅是在离子溶液中，那么添加type匹配的离子即可。当需要配合TIP4P等水溶液力场的时候，需要一定的技巧。
+TIP4P是指水分子由四个位点组成，H2O三个，加一个没有质量只有电荷的虚原子(dummy atom)。可以从`oplsaa.lt`中看到，type 65-67 是TIP4P水的类型，其中M是虚原子。
+
+OPLSAA联合TIP4P应用在LAMMPS会有一定的不兼容。具体问题是，如果显式地引入一个虚原子，转入npt阶段会抛出错误`out of range - cannot compute pppm`。现在大多数人都是修改一下，使用隐式的虚原子
+
 
 > moltemplate/examples/all_atom中有大量的使用预置力场的例子，可以交叉参考帮助理解
 
-TIP4P是指水分子由四个位点组成，H2O三个，加一个没有质量只有电荷的虚原子(dummy atom)。可以从`oplsaa.lt`中看到，type 65-67 是TIP4P水的类型，其中M是虚原子。
 
 > 再次说明，小分子内的人工（生硬）构象再一次minimize之后就可以基本达到平衡，只需要保证拓扑链接准确即可。
 
+### 隐式的虚原子
+
+首先构建一个水分子，不需要引入虚原子M
+
 ```
-# OPLSAA配合TIP4P 显式dummy_atom
+# OPLSAA配合TIP4P 隐式式dummy_atom
+# 注意OHH的顺序不能颠倒
 import "oplsaa.lt"
 
 Water inherits OPLSAA {
@@ -181,7 +199,6 @@ Water inherits OPLSAA {
         $atom:o    $mol:.    @atom:65    -0.8476    0.0000000    0.000000    0.00000
         $atom:h1   $mol:.    @atom:66    0.4238    0.8164904    0.5773590    0.00000
         $atom:h2   $mol:.    @atom:66    0.4238    -0.8164904    0.5773590   0.00000 
-        $atom:m    $mol:.    @atom:67    0.0      0.0000    0.15    0.0000
 
     }
 
@@ -189,10 +206,27 @@ Water inherits OPLSAA {
         
         $bond:1  $atom:o  $atom:h1
         $bond:2  $atom:o  $atom:h2
-        $bond:3  $atom:o  $atom:m
     }
 }
 ```
+先通过`moltemplate.sh`直接生成系统，然后再执行`cleanup_moltemplate.sh`清理到冗杂的力场信息。
 
-这样，自动生成的水就应用了TIP4P力场。
-这种方式是将TIP4P用OPLSAA参数化。注意到还提供了一个`pair_style lj/cut/tip4p/long`的命令，这个命令是提供了一个隐式的虚原子。即，保证id排列符合要求，会自动插入一个虚原子。针对其他的水力场，examples中给出了相应的示例。
+
+然后我们修改`system.in.init`，将`pair_style lj/cut/coul/long`改为`pair_style lj/cut/tip4p/long`,`kspace_style pppm` 改成`pppm/tip4p`，参数不变 。请参考[手册
+](https://lammps.sandia.gov/doc/pair_lj.html#pair-style-lj-cut-coul-long-command)，`tip4p/long`是在`coul/long`的基础上增加了添加隐式虚原子的功能。此时我们需要在末尾cutoff之前给出描述虚原子位置的参数
+
+```
+lj/cut/tip4p/long args = otype htype btype atype qdist cutoff (cutoff2)
+     
+     otype,htype = TIP4P H 和 O的atom type
+     btype,atype = bond type 和 angle type
+     qdist = 虚原子M与O的距离 (distance units)
+     cutoff = 全局LJ截断距离
+     cutoff2 = 库仑力的全局截断距离
+```
+
+同时我们还需要水分子的原子保持OHH的顺序，例如第500个原子是一个水的O，那501和502则是水的两个H，这样才能保证正确插入虚原子。
+
+完成这一步以后，将`system.in.settings`中`set charge`命令删除，在`system.in.charges`中将O的电荷由`0.0`改为`-1.04`（也就是OPLSAA中M的电荷）。
+
+最后使用`fix shake`锁住OH键。注意这个命令不能同`minimize`和`fix nve/limit`等积分器同用。
