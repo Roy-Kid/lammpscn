@@ -39,9 +39,9 @@ fix ID group-ID addforce fx fy fz keyword value ...
 
 Well then，we want to put a force on an atom above a certain height (Z-axis) and push it down. Therefore, we need an additional parameter`threshold`to indicate what height the atoms above will be pressed down, and the others will remain unchanged.
 
-Let's start with `fix_AddforceMaxZ.h', where is the declaration of the class.
+Let's start with `fix_AddforceMaxZ.h`. Every fix must be registered in LAMMPS by writing the following lines of code in the header before include guards:`FixStyle(your/fix/name,FixMine)`, Where “your/fix/name” is a name of your fix in the script and FixMine is the name of the class.
 
-Line 1 declear the`FixAddForceMaxZ`class is derived from`Fix`base class.
+Then take a look at where is the declaration of the class. Line 1 declear the`FixAddForceMaxZ`class is derived from`Fix`base class.
 
 Line 3 is the contructor`FixAddForceMaxZ`, must(as`Fix`base class requires)accept a pointer`LAMMPS *` of LAMMPS class, an int and a pointer of argurment list. These three parameters will be used to initialize the 'fix' base class.
 
@@ -50,26 +50,53 @@ Line 4 is the destructor, which is used to delete the class after it is not used
 Next are the private members of the methods and declarations that need to be implemented.
 
 ```cpp
-// fix_addforceMaxZ.h
-class FixAddForceMaxZ : public Fix {
- public:
-  FixAddForce(class LAMMPS *, int nagr, char **);
-  ~FixAddForce();
-  int setmask();
-  void init();
-  void setup(int);
-  void min_setup(int);
-  void post_force(int);
-  void post_force_respa(int, int, int);
-  void min_post_force(int);
-  double compute_scalar();
-  double compute_vector(int);
-  double memory_usage();
+     // fix_addforceMaxZ.h
 
- private:
-  double xvalue,yvalue,zvalue;
-  int varflag,iregion;
-  // rest code
+     #ifdef FIX_CLASS
+---  FixStyle(addforce, FixAddForce)     
++++  FixStyle(addforceMaxZ,FixAddForceMaxZ)
+     
+     #else
+     
+     #ifndef LMP_FIX_ADDFORCE_H
+     #define LMP_FIX_ADDFORCE_H
+     
+     #include "fix.h"
+     
+     namespace LAMMPS_NS {
+---  class FixAddForce : public Fix {
++++  class FixAddForceMaxZ : public Fix {
+      public:
+       FixAddForce(class LAMMPS *, int nagr, char **);
+       ~FixAddForce();
+       int setmask();
+       void init();
+       void setup(int);
+       void min_setup(int);
+       void post_force(int);
+       void post_force_respa(int, int, int);
+       void min_post_force(int);
+       double compute_scalar();
+       double compute_vector(int);
+       double memory_usage();
+     
+      private:
+       double xvalue,yvalue,zvalue;
+       int varflag,iregion;
+       char *xstr,*ystr,*zstr,*estr;
+       char *idregion;
+       int xvar,yvar,zvar,evar,xstyle,ystyle,zstyle,estyle;
+       double foriginal[4],foriginal_all[4];
+       int force_flag;
+       int ilevel_respa;
+     
+       int maxatom;
+       double **sforce;
+     };
+     }
+     
+     #endif
+     #endif
 };
 
 ```

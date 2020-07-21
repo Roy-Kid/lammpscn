@@ -14,6 +14,16 @@ module.exports = function() {
             ]
         },
 
+	{
+	    title:'miscellaneous',
+	    collapsable:true,
+	    sidebarDepth: 3,
+	    childran:[
+	    	['/zh/tools/miscellaneous/ms2lmp', 'ms转lmp'],
+	    ]
+	},
+
+
         {
             title: '后处理',
             collapsable: true,

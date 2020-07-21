@@ -2,7 +2,7 @@
 
 我们来尝试编译一个helloworld
 
-```c++
+```cpp
 // main.cpp
 
 #include<iostream>
@@ -58,7 +58,7 @@ g++ -o hello.out hello.cpp
 
 则./xx.out 就可以运行编译完成的可执行文件了。但是这个并不是典型的应用场景。我们用下面的三个代码来模拟日常更常用的C++工作模式
 
-```c++
+```cpp
 // human.h
 
 #ifndef HEAD_H
@@ -76,7 +76,7 @@ void SaywithPython();
 #endif
 ```
 
-```c++
+```cpp
 // human.cpp
 
 #include "human.h"
@@ -89,7 +89,7 @@ void Human::SaywithPython(){
 }
 ```
 
-```c++
+```cpp
 //main.cpp
 #include <iostream>
 #include "head.h"

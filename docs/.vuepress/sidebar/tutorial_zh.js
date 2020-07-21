@@ -23,8 +23,8 @@ module.exports = function() {
             sidebarDepth: 3,
             children: [
                 ['/zh/tutorial/advanced/conception', '术语概念'],
-                ['/zh/tutorial/advanced/neiborlist', '临近表'],
                 ['/zh/tutorial/advanced/script_adv', '脚本进阶'],       
+                ['/zh/tutorial/advanced/neiborlist', '临近表'],
                 ['/zh/tutorial/advanced/balance', '负载均衡'],
                 
               

@@ -16,9 +16,11 @@ fix ID group-ID addforce fx fy fz keyword value ...
 
 `fix add_force`命令允许用户提供力的矢量，然后给特定的粒子施加力。因此需要`fx`,`fy`,`fz`三个参数来指明力的方向；有`every`每多少步施加一次力;`region`给哪个区域施加力;`energy`计算被施加力的原子的势能。那么现在，我们是想给超过一定高度（z轴）的原子一个力，把它压下去。因此我们还需要一个额外的参数阈值`threshold`，来指明超过什么高度的原子会被摁下去，其他的都保持不变。
 
-我们先来看`fix_addforceMaxZ.h`，其中是类的声明。
+我们先来看`fix_addforceMaxZ.h`，
 
-第一行声明了从`Fix`中派生出的`FixAddForceMaxZ`类
+预处理部分，首先先将新的类注册到LAMMPS中：`FixStyle(your_command_name, class_name)`
+
+类的声明, 第一行声明了从`Fix`中派生出的`FixAddForceMaxZ`类
 
 第三行是类的构造函数`FixAddForceMaxZ`，必须(由`Fix`基类要求的)接受一个LAMMPS类的指针`LAMMPS *`，一个int和参数列表的指针。这三个参数将用来初始化`Fix`基类。
 
@@ -27,36 +29,53 @@ fix ID group-ID addforce fx fy fz keyword value ...
 接下来都是需要实现的方法和声明的私有成员。
 
 ```cpp
-// fix_addforceMaxZ.h
-class FixAddForceMaxZ : public Fix {
- public:
-  FixAddForce(class LAMMPS *, int nagr, char **);
-  ~FixAddForce();
-  int setmask();
-  void init();
-  void setup(int);
-  void min_setup(int);
-  void post_force(int);
-  void post_force_respa(int, int, int);
-  void min_post_force(int);
-  double compute_scalar();
-  double compute_vector(int);
-  double memory_usage();
+     // fix_addforceMaxZ.h
 
- private:
-  double xvalue,yvalue,zvalue;
-  int varflag,iregion;
-  char *xstr,*ystr,*zstr,*estr;
-  char *idregion;
-  int xvar,yvar,zvar,evar,xstyle,ystyle,zstyle,estyle;
-  double foriginal[4],foriginal_all[4];
-  int force_flag;
-  int ilevel_respa;
-
-  int maxatom;
-  double **sforce;
-};
-
+     #ifdef FIX_CLASS
+---  FixStyle(addforce, FixAddForce)     
++++  FixStyle(addforceMaxZ,FixAddForceMaxZ)
+     
+     #else
+     
+     #ifndef LMP_FIX_ADDFORCE_H
+     #define LMP_FIX_ADDFORCE_H
+     
+     #include "fix.h"
+     
+     namespace LAMMPS_NS {
+---  class FixAddForce : public Fix {
++++  class FixAddForceMaxZ : public Fix {
+      public:
+       FixAddForce(class LAMMPS *, int nagr, char **);
+       ~FixAddForce();
+       int setmask();
+       void init();
+       void setup(int);
+       void min_setup(int);
+       void post_force(int);
+       void post_force_respa(int, int, int);
+       void min_post_force(int);
+       double compute_scalar();
+       double compute_vector(int);
+       double memory_usage();
+     
+      private:
+       double xvalue,yvalue,zvalue;
+       int varflag,iregion;
+       char *xstr,*ystr,*zstr,*estr;
+       char *idregion;
+       int xvar,yvar,zvar,evar,xstyle,ystyle,zstyle,estyle;
+       double foriginal[4],foriginal_all[4];
+       int force_flag;
+       int ilevel_respa;
+     
+       int maxatom;
+       double **sforce;
+     };
+     }
+     
+     #endif
+     #endif
 ```
 
 我们可以把`.h`文件理解为我们告诉系统，我们需要哪些资源以储存我们定义的新参数新方法。然后这些具体的实现是从`.cpp`中完成。
