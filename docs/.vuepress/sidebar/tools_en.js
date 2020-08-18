@@ -13,7 +13,15 @@ module.exports = function() {
                 
             ]
         },
-
+        {
+            title:'miscellaneous',
+            collapsable:true,
+            sidebarDepth: 3,
+            childran:[
+                ['/zh/tools/miscellaneous/', 'overview'],
+                ['/zh/tools/miscellaneous/ms2lmp', 'ms转lmp'],
+            ]
+        },
         {
             title: 'post process',
             collapsable: true,

@@ -38,7 +38,7 @@ module.exports = function() {
             children: [
                 ['/zh/tutorial/customize/', '动手写自己的代码吧~'],
                 ['/zh/tutorial/customize/DIY_fix', '客制化fix'],
-
+                ['/zh/tutorial/customize/gdb', '使用gdb调试LAMMPS']
             ]
         }
 

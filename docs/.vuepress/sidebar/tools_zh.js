@@ -5,7 +5,7 @@ module.exports = function() {
             collapsable: true,
             sidebarDepth: 3,
             children: [
-                ['/zh/tools/', '概览'],
+                ['/zh/tools/moltemplate/', '概览'],
                 ['/zh/tools/moltemplate/moltemplate', '基础操作'],
                 ['/zh/tools/moltemplate/opls', '使用OPLS构建模型'],
                 ['/zh/tools/moltemplate/packmol', '使用Packmol填充小分子'],
@@ -18,8 +18,9 @@ module.exports = function() {
 	    title:'miscellaneous',
 	    collapsable:true,
 	    sidebarDepth: 3,
-	    childran:[
-	    	['/zh/tools/miscellaneous/ms2lmp', 'ms转lmp'],
+	    children:[
+	    	['/zh/tools/miscellaneous/', 'overview'],
+		    ['/zh/tools/miscellaneous/ms2lmp', 'ms转lmp'],
 	    ]
 	},
 
