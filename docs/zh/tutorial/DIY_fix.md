@@ -10,7 +10,7 @@
 
 其次，考虑一下我们需要什么参数：原本的`fix add_force`命令允许用户提供力的矢量，然后给一群粒子施加力
 
-```c++
+```C++
 
 class FixAddForce : public Fix {
  public:

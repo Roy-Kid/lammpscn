@@ -25,7 +25,7 @@ module.exports =  ({
             md.use(require('markdown-it-imsize'))
             md.use(require('markdown-it-katex'))
         },
-        lineNumbers: true,
+        lineNumbers: true
     },
 
     locales:{
