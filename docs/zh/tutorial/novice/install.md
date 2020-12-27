@@ -7,7 +7,7 @@
 :::
 
 ::: warning
-由于软件的复杂性和配置的多样性，不建议使用除linux以外的操作系统，不建议使用预编译包。本教程为了简明起见，以Ubuntu18.04 LTS 为例，若使用CentOS，请照葫芦画瓢，手动升级编译器和相关依赖。
+由于软件的复杂性和配置的多样性，不建议使用除linux以外的操作系统，不建议使用预编译包。本教程为了简明起见，以Ubuntu18.04 LTS 为例，若使用CentOS，请照葫芦画瓢，手动升级编译器和相关依赖。**我们强烈建议选择使用cmake安装LAMMPS, 而不是去使用Makefile**
 :::
 
 源代码内容：
@@ -39,7 +39,7 @@ git clone https://github.com/lammps/lammps.git
 
 ## 使用CMake编译LAMMPS
 
-我们强烈建议使用CMake编译。原因在于CMake1.可以自动检测当前环境和所依赖的库路径，2.可以使用预配置文件。
+**我们强烈建议使用CMake编译。原因在于CMake可以自动检测当前环境和所依赖的库路径，还可以使用预配置文件。**
 
 同时我们将展示GPU加速包的编译，这个包并不影响正常使用，可以跳过。
 
@@ -62,14 +62,6 @@ tar -zxvf mpich3.tar.gz #解压缩
 ./configure --enable-shared=yes #--enable-shared=yes是必不可少的参数；如果安装到其他路径，注意环境变量的问题。
 make
 make install
-```
-
-准备GPU加速库的依赖：
-首先安装[Nvidia显卡驱动](https://www.nvidia.cn/Download/index.aspx?lang=cn)和[Nvidia CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)两个驱动。事实上如果是Ubuntu系统，可以直接在software&updater中选择显卡所使用的驱动。检查是否成功：
-```sh
-nvidia-setting
-nvidia-smi
-watch -n 5 nvidia-smi #每5秒输出一次显卡状态
 ```
 
 ### 编译LAMMPS
@@ -104,9 +96,31 @@ cmake -C ../cmake/presets/minimal.cmake ../cmake
 ```
 
 
-# 如果这里还要编译GPU模块，那么请加上：
+## 使用Cuda加速
+
+Author：黄诚斌
+
+安装NVIDIA驱动
+查询电脑显卡型号, 根据维基百科(https://en.wikipedia.org/wiki/CUDA#GPUs_supported) 上的信息查找自己显卡对应的架构, 以及对应的CUDA版本
+![GPU_ARCH](/tutorial/install/gpu_arch.jpg)
+
+
+首先安装[Nvidia显卡驱动](https://www.nvidia.cn/Download/index.aspx?lang=cn)和[Nvidia CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)两个驱动, 事实上如果是Ubuntu系统, 可以直接在software&updater中选择显卡所使用的驱动. 检查是否成功:
+```sh
+nvidia-setting
+nvidia-smi
+watch -n 5 nvidia-smi #每5秒输出一次显卡状态
 ```
--D PKG_GPU=on      #include GPU package
+
+安装完成后将编译器位置添加到环境变量中. 打开`.bashrc` 添加`export PATH=$PATH:/usr/local/cuda-10.2/bin `保存文件后执行`nvcc -V`，如果输出正常，即代表安装成功. 
+
+::: warning
+如果出现"binary2txt"相关的错误一定与环境变量有关系
+:::
+
+请在`cmake`的时候加上以下参数: 
+```
+-D PKG_GPU=on      # include GPU package
 -D GPU_API=cuda    # value = opencl (default) or cuda
 -D GPU_PREC=mixed  # precision setting
                    # value = double or mixed (default) or single
@@ -117,10 +131,11 @@ cmake -C ../cmake/presets/minimal.cmake ../cmake
                    # enables CUDA Performance Primitives Optimizations
                    # yes (default) or no
 ```
-
-ARCH的参数选择：
-![GPU_ARCH](/tutorial/install/gpu_arch.jpg)
-
+例如: 
+```
+cmake -C ../cmake/preset/minimal.cmake -DPKG_GPU=on -DGPU_API=cuda -DGPU_ARCH=sm_61
+```
+注意这里精度最好使用混合精度
 ```
 # 调用GPU来做加速，仅需要加入-sf -pk两个flag
 
@@ -139,3 +154,27 @@ make install
 请注意，此时cmake 文件夹下会有一个名为lmp的可执行文件，此文件就是最终编译结果。如果您看这个名字不爽可以自行重命名，以后开始计算所调用命令就以新名称替换。教程以下均使用lmp/lmp_mpi/lmp_serial均/lmp_gpu均代指此文件。
 
 
+## 使用kokkos加速
+
+::: tip
+本节教程定位到[手册](https://lammps.sandia.gov/doc/Packages_details.html#pkg-kokkos)和[安装详情](https://lammps.sandia.gov/doc/Build_extras.html#kokkos)两节。
+:::
+
+LAMMPS中很多的style, 都没有专门的cuda加速代码. 这时我们可以使用kokkos库, 将C++代码转化为`OpenMP`或者`CUDA`代码, 在多核系统运行. 在手册中, 所有带有`/kk`前缀的命令都可以通过这个库跑在并行系统上, 只需要在运行时像`CUDA`加上`-sf kk` 这样的参数即可. 
+
+因为kokkos使用了大量的新特性, 因此前提是必须有`C++11`的编译器. 安装kokkos的方法很多, 我们从自动到手动来介绍. 在编译的过程中, 需要选择主机上是否并行和需要选择用来负责计算的设备(offload of calculations to a device). 默认这两个选项都是关闭的. 此外, 指定的硬件的架构必须要和本机匹配. 由于硬件都是向前兼容的, 所以老版本的编译出的文件可以跑在新架构上. 
+
+首先是尽量保证kokkos的GPU架构和LAMMPS的GPU包一致; 如果不一致的话, 在计算开始时的初始化阶段会有一个延迟, 为新硬件编译GPU核心. 如果GPU的大版本不对, 例如5.2和6.0这样, 就会出问题. 简而言之, 好好设置重新编译一遍不费事, 别找麻烦.
+
+为了简化安装, 在`cmake/presets`下有三个预配置文件:`kokkos-serial.cmake`, `kokkos-openmp.cmake`, `kokkos-cuda.cmake`. 可以连用cmake中的`-C`flage来叠加使用配置 
+```
+cmake -C ../cmake/presets/minimal.cmake -C ../cmake/presets/kokkos-cuda.cmake ../cmake
+```
+
+编译配置完成后接着编译
+```
+make -j8
+make install
+```
+
+This wraps an nvcc, allowing it to be treated as a real C++ compiler with all the usual flags.

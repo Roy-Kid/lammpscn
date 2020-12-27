@@ -11,7 +11,7 @@ module.exports = {
     },
 
     alert: [{
-        id: '2020-7-8',
+        id: '2020-12-28',
         title: '文档公告',
         content: 'The update stopped because some people were too selfish'
     }],
