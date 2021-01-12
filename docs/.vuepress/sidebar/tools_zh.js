@@ -36,6 +36,17 @@ module.exports = function() {
                 
                 
             ]            
+        },
+
+        {
+            title: 'VMD',
+            collapsable: true,
+            sidebarDepth: 3,
+            children: [
+                ['/zh/tools/vmd/', '概览'],
+                ['/zh/tools/vmd/vmd', 'VMD']
+                
+            ]            
         }
     ]
 }

@@ -3,7 +3,7 @@
 # 安装LAMMPS
 
 ::: tip
-本节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的install & Build LAMMPS两节。
+本节教程定位到[手册](https://lammps.sandia.gov/doc/Build_cmake.html)的install & Build LAMMPS两节。
 :::
 
 ::: warning

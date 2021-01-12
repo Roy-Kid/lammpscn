@@ -5,7 +5,7 @@ sidebarDepth: 4
 # 启动计算
 
 ::: tip
-本节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的4.1与4.2小节
+本节教程定位到[手册](https://lammps.sandia.gov/doc/Run_basics.html)的4.1与4.2小节
 
 :::
 LAMMPS从命令行启动，读取input文件中的指令，读入data文件中的数据，开始其计算流程。

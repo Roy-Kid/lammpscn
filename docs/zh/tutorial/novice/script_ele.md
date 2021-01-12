@@ -1,7 +1,7 @@
 # 脚本入门
 
 ::: tip
-本节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的5.1-5.3节
+本节教程定位到[手册](https://lammps.sandia.gov/doc/Commands_input.html)的5.1-5.3节
 :::
 
 * LAMMPS的脚本语法风格是类UniX风格；
@@ -52,43 +52,44 @@ print    "B2 = $(v_x-1.0)"
 
 一个LAMMPS input script通常分为四部分：
 
-    1. Initialization；
-    2. Data reading；
-    3. Settings；
-    4. Running；
+1. Initialization；
+2. System definition；
+3. Settings；
+4. Running；
 
 系统的定义和初始化部分通常仅需说明一次，而过程设置可以重复多次；如在定义好体系后，设置，计算，修改设置，再运算。以下会给出常用的参数，其他大量的功能请到手册中查询。
 
 #### Initialization 初始化
 
-定义与系统相关的参数，如：
+定义与系统全局相关的参数，如：
 
 * units 
 * dimension 
 * boundary
 * atom_style
-* bond_style & bond_coeff
-* pair_style & pair_coeff
-* dihedral_style & dihedralcoeff
+* bond_style
+* pair_style 
+* dihedral_style 
 
-#### Data input 模型读取
+#### System definition 系统设定
 
-读取构建的模型数据，或者读取restart文件：
+读取构建的模型数据，或读取restart文件，或使用内置明令构建简单模型：
 
 * read_data
 * read_restart
+* lattice, region, create_box, create_atoms
 
 #### Settings 设置
 
 设定系统全局的温度，压力等，设定系统局部的受力，限制等；使用计算命令输出参数等。
 
+* pair/angle/dihedral/improper_coeff
+* special_bonds
 * neighbor
 * fix
 * compute
 
-#### Running 炼丹
-
-开始计算。
+#### Running 开始计算
 
 * minimize
 * run
@@ -96,7 +97,7 @@ print    "B2 = $(v_x-1.0)"
 ## 数据文件格式
 
 ::: tip
-本小节教程定位到[手册](https://lammps.sandia.gov/doc/Manual.html)的Commands-read_data-Format of a data file一节。
+本小节教程定位到[手册](https://lammps.sandia.gov/doc/read_data.html)的Commands-read_data-Format of a data file一节。
 :::
 
 data文件指由别的软件建立好，供LAMMPS读取的关于粒子坐标，拓扑等信息的文件，由*开头（header）*和*主体（body）*组成，并不固定。即，有一些参数，如势函数的值，既可以在data文件中提供，也可以在input文件中提供。
@@ -107,7 +108,7 @@ data文件的*主体*部分，展示了导入软件的模型信息，包括粒�
 
 ## 举个栗子
 
-这是一个简单的[高分子拉伸模拟](https://icme.hpc.msstate.edu/mediawiki/index.php/Deformation_of_Amorphous_Polyethylene)，我们以其中的弛豫部分为例，讲解LAMMPS脚本结构
+这是一个简单的[高分子拉伸模拟](https://icme.hpc.msstate.edu/mediawiki/index.php/Deformation_of_Amorphous_Polyethylene.html)，我们以其中的弛豫部分为例，讲解LAMMPS脚本结构
 
 ```
 # Initialization

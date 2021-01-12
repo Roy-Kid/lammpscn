@@ -22,5 +22,9 @@ module.exports = [
     {
         text: '我们',
         link: '/zh/contact/'
+    },
+    {
+        test: '论坛',
+        link: 'http://forum.lammps.org.cn'
     }
 ]
