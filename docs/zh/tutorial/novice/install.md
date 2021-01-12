@@ -178,3 +178,55 @@ make install
 ```
 
 This wraps an nvcc, allowing it to be treated as a real C++ compiler with all the usual flags.
+
+## 使用传统的Make安装
+
+使用`makefiles`编译需要和系统搭配的`Makefile.<machine>`文件, 比如说`src/MAKE`里的各种, 其中包含着编译时的选项和特性. `Make`方法是最传统的方法, 但是似乎相对于`CMake`没有优势. 
+
+### 要求
+以下的操作都是在GNU make下进行的, 如果不是GNU make的话最好是先安装或者转到`CMake`方法.
+* 支持`C++11`的编译器. Linux下通常是GNU的编译器, 一些老的编译器可能需要`-std=c++11`切换到`C++11`模式; 
+
+### 安装
+
+在编译之前, 你需要手动指定需要编译的包, 使用`make yes-<package>`来添加. 其中`<package>`是需要的包名. 你可以用`make package`查看有哪些包需要编译. 
+
+使用以下命令可以执行默认的LAMMPS编译, 在`lammps/src`下生成`lmp_serial`和`lmp_mpi`:
+
+```
+cd lammps/src
+make <machine> -jN    # 命令格式, -jN指用N个核编译 
+make serial           # 编译串行的LAMMPS执行文件
+make mpi              # 编译并行的LAMMPS执行文件
+make                  # 查看make帮助
+```
+
+编译需要很长时间, 因此可以使用`make <machine> -j N`来并行编译. 同时, 安装[ccache](https://ccache.dev/)可以在,例如代码开发重复编译时节省时间.
+
+在第一遍编译完之后, 任何时候重新编辑了LAMMPS代码, 增添或删除文件, 都需要重新编译和重新链接LAMMPS可执行文件到同样的`make <machine>`命令上. `makefile`的追踪只保证那些需要重新编译的文件呗重新编译, 因此如果你改动了`makefile`, 你需要重新编译整个包. 清空环境需要用`make clean-<machine>`. 
+
+::: tip
+
+编译之前, LAMMPS会手机配置信息, 然后编入到应用程序中. 当你第一次编译LAMMPS时, 会编译一个收集各种依赖的工具. 这可以有效地检测到有哪些模块或者源代码需要重新编译.
+
+:::
+
+### 客制化编译和可选的makefiles
+
+`src/MAKE`中有一些形如`Makefile.<machine>`的文件. 使用`make example`以使用`Makefile.example`. 因此, 以上的`make serial`和`make mpi`分别使用了`src/MAKE/Makefile.serial`和`src/MAKE/Makefile.mpi`. 其他的makefile在这些文件夹中: 
+
+```
+OPTIONS    # 关于可以用的特殊设置
+MACHINES   # 针对特殊的机器
+MINE       # 你自己的特殊设定
+```
+在makefile文件中, 包含了LAMMPS编译需要的参数和信息, 因此如果手动指定某些参数, 需要修改makefile. 
+
+::: tip
+
+本节教程定位到[手册](https://lammps.sandia.gov/doc/Build_settings.html)的 Optional build settings 一节.
+
+:::
+
+例如我需要指定int数据的字节数, 而不是默认的4比特(21字节). 打开需要用的makefile, 例如我将用`make mpi`命令编译, 就打开`Makefile.mpi`, 在31行找到`LMP_INC`关键字, 在其后加上`-DLAMMPS_BIGBIG`, 保存, 回到`src`下使用`make mpi`编译.
+

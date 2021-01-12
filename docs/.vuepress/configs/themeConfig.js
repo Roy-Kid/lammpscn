@@ -13,7 +13,7 @@ module.exports = {
     alert: [{
         id: '2020-12-28',
         title: '文档公告',
-        content: 'The update stopped because some people were too selfish'
+        content: '欢迎向本教程的GitHub上贡献内容. 只有群策群力才能实现良性发展.'
     }],
     editLinks: true,
 
