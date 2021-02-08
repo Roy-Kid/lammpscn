@@ -78,8 +78,7 @@ Phy. 1945,13,253)
 | Pressure | $ $\mathrm{P}^{*}=\varepsilon^{*} / \sigma^{* 3}$ | $358.35 bar = 3.58358*10^7 Pa$ |
 | Mass density | $\rho^* = m^*/{\sigma^*}^3$ | $1022.5 kg/m^3$ |
 | Number density | $n^* = 1/{\sigma^*}^3$ | $10.974 nm^{-3}$ |
-| Permittivity | $\varepsilon_{0}^{*}=\mathrm{N}_{\mathrm{A}} \cdot q^{* 2} /\left(\sigma^{*} \varepsilon^{*}\right)$ |
-$1.7469\cdot 10^{-8} C^2/Nm^2$ |
+| Permittivity | $\varepsilon_{0}^{*}=\mathrm{N}_{\mathrm{A}} \cdot q^{* 2} /\left(\sigma^{*} \varepsilon^{*}\right)$ | $1.7469\cdot 10^{-8} C^2/Nm^2$ |
 
 在这个模型中, 使用了$1.3T^*$的约化温度, 相当于实际的307K. 在这个系统中的大气压使用了$0.00283 P^*$的约化温度. 用于积分的时间步长是$0.005 \tau^*$, 相当于实际中的12fs.
 在原文中, 同样给出了一个转换工具, 即确定了四个基本参数, 就可以计算出其他的约化因子.
