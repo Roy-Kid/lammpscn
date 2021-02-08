@@ -43,7 +43,7 @@ $$T^*=\frac{T}{T_c}$$
 
 称带星号的为对比压力(reduced pressure), 对比体积(reduced volumn)和对比温度(reduced temperature). 代入上式, 得:
 
-$$\left( p^* + \frac{3}{{V^*}^2} \right) \left( 3V^*-1 \right) = 8$$
+$$\left( p^* + \frac{3}{V^{* 2}} \right) \left( 3V^*-1 \right) = 8$$
 
 上式成为范德瓦尔斯对比状态方程式. 此式不含有因物质而异的常数, 且与物质的量无关. 它是一个普遍性的方程式. 任何范德华气体都可以满足上式, 且在相同的对比温度和对比压力下, 就有相同的比容积. 此时,
 各物质状态成为对比状态(corresponding state), 这个定律也称之为对比状态定律(law of corresponding state). 试验数据证明, 凡是组成、结构、分子大小相近的物质能比较严格地遵守对比状态定律.
