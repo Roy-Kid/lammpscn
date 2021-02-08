@@ -13,6 +13,7 @@ module.exports = function() {
                 ['/zh/tutorial/novice/data_format', '数据类型'],
                 ['/zh/tutorial/novice/dump', '数据转储'],
                 ['/zh/tutorial/novice/restart', '暂停与重启'],
+                ['/zh/tutorial/novice/reducedunit', '约化单位']
 
 
             ]
@@ -40,7 +41,7 @@ module.exports = function() {
                 ['/zh/tutorial/customize/', '动手写自己的代码吧~'],
                 ['/zh/tutorial/customize/DIY_fix', '客制化fix'],
                 ['/zh/tutorial/customize/gdb', '使用gdb调试LAMMPS'],
-                ['/zn/tutorial/customize/pairwrite', '检查修订过的势函数'],
+                ['/zh/tutorial/customize/pairwrite', '检查修订过的势函数'],
             ]
         },
 
