@@ -4,12 +4,12 @@
 
 ## 内容贡献者
 
-* 李吉辰, 中国科学技术大学；
+* 李吉辰, 中科院长春应用化学研究所;
+* 刘松林, 中科院物理研究所;
+* 黄诚斌, 武汉大学
 * 赵一农, 约翰逊霍普金斯大学；
-* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics),中国科学技术大学；
-* [三级狗](https://www.zhihu.com/people/san-ji-gou-13/posts)；
+* [小侯飞刀](https://zhuanlan.zhihu.com/computational-physics);
 * Shafat Mubin，宾夕法尼亚州立大学；
-* 朗星yi，大连理工大学；
 
 ## 网站维护者
 

@@ -4,4 +4,4 @@ yarn-error.log
 yarn.lock
 /.vscode
 /docs/.vuepress/dist
-/pytest_cache
+.pytest_cache
