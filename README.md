@@ -16,7 +16,7 @@
 
 ## 中级贡献
 
-首先, 先学会使用markdown语言书写文稿. markdown是一种标记语言, 非常直观与简介. 教程可以参考!()[https://github.com/appinncom/Markdown-Syntax-CN].
+首先, 先学会使用markdown语言书写文稿. markdown是一种标记语言, 非常直观与简介. 教程可以参考![](https://github.com/appinncom/Markdown-Syntax-CN).
 
 当你完成文档的书写后, 下一步是将文档集成到网页中. 登陆GitHub, 找到`lammpscn`, fork一份源码到, 之后可以在自己的repositories中找到`lammpscn`的repo
 
