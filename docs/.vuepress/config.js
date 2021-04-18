@@ -7,6 +7,8 @@ module.exports =  ({
     themeConfig : require('./configs/themeConfig'),
     plugins : require('./configs/plugins'),
     extraWatchFiles : [
+        '.vuepress/sidebar/hi_zh',
+        '.vuepress/sidebar/hi_en',
         '.vuepress/sidebar/command_zh',
         '.vuepress/sidebar/command_en',
         '.vuepress/sidebar/tutorial_zh',

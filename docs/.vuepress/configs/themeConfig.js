@@ -27,8 +27,9 @@ module.exports = {
             
             nav: require('../nav/zh.js'),
             sidebar: {
+                '/zh/hi/': require('../sidebar/hi_zh')(),
                 '/zh/tutorial/': require('../sidebar/tutorial_zh')(),
-                '/zh/command/': require('../sidebar/command_zh')(),
+    
                 '/zh/tools/': require('../sidebar/tools_zh')(),
                 '/zh/column/': require('../sidebar/column_zh')(),
             },
@@ -39,8 +40,6 @@ module.exports = {
             selectText: 'Language',
             label: 'English',
             editLinkText: 'Edit on GitHub',
-
-
 
             nav: require('../nav/en.js'),
             sidebar: {

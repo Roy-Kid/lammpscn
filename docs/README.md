@@ -44,7 +44,8 @@ footer: 署名-非商业性使用-相同方式共享 3.0 中国大陆 (CC BY-NC-
 
 进入`docs/.vuepress/sidebar`, 找到`主题_zh.js`, 按照格式添加项目
 
-例如, 我想向贡献名为“震惊! 新手这么用LAMMPS就错了”到网站中“开始/”, 你需要将自己写的`shock.md`放到`docs/zh/tutorial/novice`中. 然后打开`tutorial_zh.js`, 在`入门篇`的`children`中加一行`['/zh/tutorial/novice/shock', '震惊']`. 注意, 每个条目之间需要用逗号隔开. 如果你的机器上装有nodejs, 你可以在`lammpscn`的根目录下输入`yarn docs:dev`查看实际的效果(如果没有的话也不影响, 直接pull request就行, 我会给你收尾的)
+例如, 我想向贡献名为“震惊! 新手这么用LAMMPS就错了”到网站中“开始/”, 你需要将自己写的`shock.md`放到`docs/zh/tutorial/novice`中. 然后打开`tutorial_zh.js`, 在`入门篇`的`children`中加一行`['/zh/tutorial/novice/shock', '震惊']`. 注意, 每个条目之间需要用逗号隔开. 
+如果你的机器上装有nodejs, 在使用`npm install`去安装依赖, 你可以在`lammpscn`的根目录下输入`yarn docs:dev`或`npm run docs:dev`查看实际的效果(如果没有的话也不影响, 直接pull request就行, 我会给你收尾的).
 
 接下来, 使用`git push`将代码推到你的GitHub账户上. 这时候你再去看你的`lammpscn`的repo的`draft`分支, 就可以看到更改后的内容了. 
 
@@ -66,7 +67,7 @@ footer: 署名-非商业性使用-相同方式共享 3.0 中国大陆 (CC BY-NC-
 
 ## LAMMPS是什么？
 
-Large-scale Atomic/Molecular Massively Parallel Simulator（aka. LAMMPS)是由美国能源部下属的Sandia国家实验室联合Temple大学开发的经典分子动力学软件包。程序基于C++开发，支持主流的并行框架，并在GPL协议下开源。[官方网站](https://lammps.sandia.gov/)
+Large-scale Atomic/Molecular Massively Parallel Simulator(aka. LAMMPS)是由美国能源部下属的Sandia国家实验室联合Temple大学开发的经典分子动力学软件包。程序基于C++开发，支持主流的并行框架，并在GPL协议下开源。[官方网站](https://lammps.sandia.gov/)
 
 ## LAMMPS能做什么？
 

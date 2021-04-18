@@ -1,22 +1,22 @@
 module.exports = [
     {
-        text: '开始',
+        text: '初识',
+        link: '/zh/hi/'
+    },
+
+    {
+        text: '入门',
         link: '/zh/tutorial/'
     },
 
     {
-        text: '命令',
-        link: '/zh/command/'
+        text: '扩展',
+        link: '/zh/extending/'
     },
 
     {
         text: '专栏',
         link: '/zh/column/'
-    },
-
-    {
-        text: '工具',
-        link: '/zh/tools/'
     },
 
     {
