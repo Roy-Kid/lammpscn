@@ -13,4 +13,4 @@
 
 然后要开始计算pair_coeff了。那么lammps就拿着这张表，逐个去计算作用势。很明显，在这个逻辑链上，neighbor list的大小直接决定了计算量，优先级要高于cutoff。因此，在我这个体系中，我neighbor command 的style是bin选项，就会以最大的原子cutoff去生成这个表，所以增加了巨大的无效计算。
 
-这个命令设置了影响neighbor list 构建的参数。在这张表容纳了所有在cutoff+skin范围内的原子对。通常来说，这个skin distance越大，重新构建表的次数越少，要计算的也越多（废话）。
+这个命令设置了影响neighbor list 构建的参数。在这张表容纳了所有在cutoff+skin范围内的原子对。通常来说，这个skin distance越大，重新构建表的次数越少，要计算的也越多

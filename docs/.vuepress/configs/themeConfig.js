@@ -27,9 +27,8 @@ module.exports = {
             
             nav: require('../nav/zh.js'),
             sidebar: {
-                '/zh/hi/': require('../sidebar/hi_zh')(),
+                '/zh/hello/': require('../sidebar/hello_zh')(),
                 '/zh/tutorial/': require('../sidebar/tutorial_zh')(),
-    
                 '/zh/tools/': require('../sidebar/tools_zh')(),
                 '/zh/column/': require('../sidebar/column_zh')(),
             },

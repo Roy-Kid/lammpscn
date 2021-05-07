@@ -1,7 +1,7 @@
 module.exports = [
     {
         text: '初识',
-        link: '/zh/hi/'
+        link: '/zh/hello/'
     },
 
     {

@@ -8,6 +8,7 @@ module.exports = function() {
             children: [
                 ['/zh/column/nemd/triclinic', '三斜系基础'],
                 ['/zh/column/nemd/deform', '拉伸压缩与剪切'],
+                ['/zh/column/nemd/impact', '冲击实验']
             ]
         },
 
