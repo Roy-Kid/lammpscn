@@ -133,7 +133,7 @@ watch -n 5 nvidia-smi #每5秒输出一次显卡状态
 ```
 例如: 
 ```
-cmake -C ../cmake/preset/minimal.cmake -DPKG_GPU=on -DGPU_API=cuda -DGPU_ARCH=sm_61
+cmake -C ../cmake/presets/minimal.cmake -DPKG_GPU=on -DGPU_API=cuda -DGPU_ARCH=sm_61 ../cmake
 ```
 注意这里精度最好使用混合精度
 ```
