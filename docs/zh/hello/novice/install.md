@@ -102,7 +102,7 @@ Author：黄诚斌
 
 安装NVIDIA驱动
 查询电脑显卡型号, 根据维基百科(https://en.wikipedia.org/wiki/CUDA#GPUs_supported) 上的信息查找自己显卡对应的架构, 以及对应的CUDA版本
-![GPU_ARCH](/tutorial/install/gpu_arch.jpg)
+![GPU_ARCH](//install/gpu_arch.jpg)
 
 
 首先安装[Nvidia显卡驱动](https://www.nvidia.cn/Download/index.aspx?lang=cn)和[Nvidia CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)两个驱动, 事实上如果是Ubuntu系统, 可以直接在software&updater中选择显卡所使用的驱动. 检查是否成功:

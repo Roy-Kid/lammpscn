@@ -1,7 +1,7 @@
 {
-  "name": "lammpscnv2",
+  "name": "lammpscn",
   "version": "1.0.0",
-  "description": "",
+  "description": "这是一个LAMMPS中文教程网站",
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "markdown-it-katex": "^2.0.3",
+    "reco": "^0.0.3",
     "vuepress-plugin-baidu-google-analytics": "^1.0.2",
     "vuepress-plugin-flowchart": "^1.4.3"
   }

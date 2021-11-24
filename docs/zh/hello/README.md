@@ -8,7 +8,7 @@
 
 ## 能力要求
 
-* ![](/tutorial/INV_Misc_Book_07.png) 初级语文专精
-* ![](/tutorial/Spell_Nature_StoneSkinTotem.png) 初级linux操纵术
-* ![](/tutorial/Spell_Holy_SpiritualGuidence.png) 中级联想专精
-* ![](/tutorial/Spell_Arcane_FocusedPower.png) 高级耐心专精
+* ![](/hello/INV_Misc_Book_07.png) 初级语文专精
+* ![](/hello/Spell_Nature_StoneSkinTotem.png) 初级linux操纵术
+* ![](/hello/Spell_Holy_SpiritualGuidence.png) 中级联想专精
+* ![](/hello/Spell_Arcane_FocusedPower.png) 高级耐心专精

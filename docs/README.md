@@ -5,7 +5,7 @@ title: LAMMPS 中文站
 
 heroImage: /logo.gif
 actionText: 快速开始 →
-actionLink: /zh/tutorial/
+actionLink: /zh/hello/
 features:
 - title: 为什么选择LAMMPS？
   details: 开源；高效；通用; 力场全面；易于扩展
@@ -54,7 +54,7 @@ features:
 
 进入`docs/.vuepress/sidebar`, 找到`主题_zh.js`, 按照格式添加项目
 
-例如, 我想向贡献名为“震惊! 新手这么用LAMMPS就错了”到网站中“开始/”, 你需要将自己写的`shock.md`放到`docs/zh/tutorial/novice`中. 然后打开`tutorial_zh.js`, 在`入门篇`的`children`中加一行`['/zh/tutorial/novice/shock', '震惊']`. 注意, 每个条目之间需要用逗号隔开. 
+例如, 我想向贡献名为 “震惊! 新手这么用LAMMPS就错了” 到网站中`专栏/`, 你需要将自己写的`shock.md`放到`docs/zh/column/`中. 然后打开`column_zh.js`, 在`入门篇`的`children`中加一行`['/zh/column/shock', '震惊']`. 注意, 每个条目之间需要用逗号隔开. 
 如果你的机器上装有nodejs, 在使用`npm install`去安装依赖, 你可以在`lammpscn`的根目录下输入`yarn docs:dev`或`npm run docs:dev`查看实际的效果(如果没有的话也不影响, 直接pull request就行, 我会给你收尾的).
 
 接下来, 使用`git push`将代码推到你的GitHub账户上. 这时候你再去看你的`lammpscn`的repo的`draft`分支, 就可以看到更改后的内容了. 
