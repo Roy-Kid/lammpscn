@@ -1,22 +1,23 @@
 module.exports = ({
     subSidebar: 'auto',
     author: 'Roy Kid',
-    repo: 'Roy-Kid/lammpscnv2',
+    repo: 'Roy-Kid/lammpscn',
     nav: [
         {
-            text: '初识',
-            link: '/zh/hello/'
-        },
-    
-        {
             text: '入门',
-            link: '/zh/tutorial/'
+            link: '/zh/hello/'
         },
     
         {
             text: '扩展',
             link: '/zh/extending/'
         },
+
+        {
+            text: '工具',
+            link: '/zh/tools/'
+        },
+    
     
         {
             text: '专栏',

@@ -63,5 +63,51 @@ module.exports = function() {
             ]
         },
 
+        {
+            title: '入门篇',
+            collapsable: true,
+            sidebarDepth: 3,
+            children: [
+                ['/zh/hello/', '介绍'],
+                ['/zh/hello/novice/install', '安装'],
+                ['/zh/hello/novice/script_ele', '脚本入门'],
+                ['/zh/hello/novice/run', '启动计算'],
+                ['/zh/hello/novice/output', '系统输出'],
+                ['/zh/hello/novice/data_format', '数据类型'],
+                ['/zh/hello/novice/dump', '数据转储'],
+                ['/zh/hello/novice/restart', '暂停与重启'],
+                ['/zh/hello/novice/reducedunit', '约化单位']
+
+
+            ]
+        },
+
+        {
+            title: '进阶篇',
+            collapsable: true,
+            sidebarDepth: 3,
+            children: [
+                ['/zh/hello/advanced/conception', '术语概念'],
+                ['/zh/hello/advanced/script_adv', '脚本进阶'],       
+                ['/zh/hello/advanced/neiborlist', '临近表'],
+                ['/zh/hello/advanced/balance', '负载均衡'],
+                
+              
+            ]
+        },
+
+        {
+            title: '客制化',
+            collapsable: true,
+            sidebarDepth: 3,
+            children: [
+                ['/zh/hello/customize/', '动手写自己的代码吧~'],
+                ['/zh/hello/customize/DIY_fix', '客制化fix'],
+                ['/zh/hello/customize/gdb', '使用gdb调试LAMMPS'],
+                ['/zh/hello/customize/pairwrite', '检查修订过的势函数'],
+            ]
+        },
+
     ]
+
 }
