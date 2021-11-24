@@ -1,3 +1,11 @@
+---
+title: LAMMPS做冲击
+date: 2021-05-07
+categories: article
+author: 尹府尹
+---
+
+
 # LAMMPS做冲击
 
 ## 什么是冲击压缩？

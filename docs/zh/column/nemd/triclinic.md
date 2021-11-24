@@ -11,7 +11,20 @@
 通常来说，我们模拟时的粒子由正交的模拟盒子包裹。`boundary`命令设置了边界条件。正交盒子的大小由六个参数来控制，分别是原点(xlo ylo zlo)、顶点(xhi yhi zhi)和边长(lx ly lz)
 
 LAMMPS同样支持三斜体系。三斜盒子同样有它的原点(xlo ylo zlo)，然后定义了三个边向量
-$$ a=(xhi-xlo,0,0)\\b=(xy,yhi-ylo)\\ c=(xz, yz, zhi-zlo)$$
+
+$$ 
+
+a=(xhi-xlo,0,0)
+
+$$
+$$
+b=(xy,yhi-ylo)
+$$
+$$
+c=(xz, yz, zhi-zlo)
+
+$$
+
  `xy xz yz`称为倾斜系数(tilt factors)，它们是应用于原本正交长方体的面以将其转换为平行六面体的位移量。
 
 LAMMPS中，$a b c$三个向量不能随意设置。a必须在x正轴上，b在 xy平面指向y轴正方向上，c指向z轴正方向。这也就是要求整个三斜盒子都在第一卦限中，确保是“右手系”。
@@ -106,7 +119,7 @@ xlo_bound xhi_bound xy
 ylo_bound yhi_bound xz
 zlo_bound zhi_bound yz
 ```
-_bound是为了可视化处理而给出的变量，由以下算出：
+*_bound是为了可视化处理而给出的变量，由以下算出：
 
 ```
 xlo_bound = xlo + MIN(0.0,xy,xz,xy+xz)

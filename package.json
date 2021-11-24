@@ -1,30 +1,22 @@
 {
-  "name": "lammpscn",
-  "version": "0.2.0",
+  "name": "lammpscnv2",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "repository": "https://github.com/Roy-Kid/lammpscn.git",
-  "author": "Roy_Kid <lijichen365@126.com>",
-  "license": "CC-BY-NC-SA-4.0",
-  "bugs": {
-    "url": "https://github.com/teadocs/numpy-cn/issues"
-  },
-  "dependencies": {
-    "@vuepress/plugin-back-to-top": "*",
-    "@vuepress/plugin-google-analytics": "*",
-    "@vuepress/plugin-medium-zoom": "*",
-    "@vuepress/plugin-pwa": "*",
-    "@vuepress/theme-vue": "*",
-    "markdown-it-imsize": "*",
-    "markdown-it-katex": "*",
-    "vue-toasted": "*",
-    "vuepress": "*",
-    "vuepress-plugin-baidu-google-analytics": "*",
-    "vuepress-plugin-flowchart": "*",
-    "vuepress-plugin-sitemap": "*",
-    "vuepress-theme-teadocs": "*"
-  },
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.8.2",
+    "vuepress-theme-reco": "^1.6.6"
+  },
+  "dependencies": {
+    "markdown-it-katex": "^2.0.3",
+    "vuepress-plugin-baidu-google-analytics": "^1.0.2",
+    "vuepress-plugin-flowchart": "^1.4.3"
   }
 }

@@ -6,14 +6,11 @@ title: LAMMPS 中文站
 heroImage: /logo.gif
 actionText: 快速开始 →
 actionLink: /zh/tutorial/
-action2Text: 命令速查 →
-action2Link: /zh/command/
 features:
 - title: 为什么选择LAMMPS？
   details: 开源；高效；通用; 力场全面；易于扩展
 - title: LAMMPS 可以做什么？
   details: 粗粒化模型；全原子；有限尺寸的球或椭球粒子; 偶极子; 刚体
-footer: 署名-非商业性使用-相同方式共享 3.0 中国大陆 (CC BY-NC-SA 3.0 CN) | Copyright © 2021-present Roy Kid
 ---
 
 # lammpscn

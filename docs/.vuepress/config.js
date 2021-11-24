@@ -1,48 +1,55 @@
-module.exports =  ({
+
+module.exports = {
+  theme: 'reco',
+  themeConfig: require('./configs/themeConfig.js'),
+
+  title: "LAMMPS 中文站",
+  description: "这是一个LAMMPS中文教程网站",
+
+  head: [
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }],
+    ['link', { rel: 'icon', href: '/icons/favicon.ico' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['link', { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon.png' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
+    ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }],
 
 
-    head : require('./configs/head'),
-    
-    theme : 'teadocs',
-    themeConfig : require('./configs/themeConfig'),
-    plugins : require('./configs/plugins'),
-    extraWatchFiles : [
-        '.vuepress/sidebar/hello_zh',
-        '.vuepress/sidebar/hello_en',
-        '.vuepress/sidebar/command_zh',
-        '.vuepress/sidebar/command_en',
-        '.vuepress/sidebar/tutorial_zh',
-        '.vuepress/sidebar/tutorial_en',
-        '.vuepress/sidebar/tools_zh',
-        '.vuepress/sidebar/tools_en',
-        '.vuepress/sidebar/column_zh',
-        '.vuepress/sidebar/column_en',
-        '.vuepress/nav/zh.js',
-        '.vuepress/nav/en.js',
+    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }],
+    ['meta', { name: 'keywords', content: 'lammps中文,lammps,lammps教程,lammps官网' }],
+    ['meta', { name: 'description', content: 'lammps的非官方中文文档，lammps教程' }],
 
-    ],
-    markdown: {
-        extendMarkdown: md =>{
-            md.set({html: true})
-            md.use(require('markdown-it-imsize'))
-            md.use(require('markdown-it-katex'))
-        },
-        lineNumbers: true
+    ['script', { type: 'text/javascript', scr: './push.js' }],
+  ],
+
+  plugins: [
+    ['vuepress-plugin-flowchart', true],
+    ['@vuepress/medium-zoom', true],
+    ['vuepress-plugin-baidu-google-analytics', {
+      hm: '915d9a17e5448406c16519f87d253e84',
+      ga: 'UA-159337280-1'
+    }],
+    ['@vuepress/active-header-links', {
+      sidebarLinkSelector: '.sidebar-link',
+      headerAnchorSelector: '.header-anchor'
+    }],
+    // vuepress-plugin-copyright
+    ['vuepress-plugin-sitemap', {
+      hostname: 'https://lammps.org.cn'
+    }],
+
+    ['vuepress-plugin-smooth-scroll', true],
+  ],
+
+  markdown: {
+    extendMarkdown: md => {
+      md.set({ html: true })
+      md.use(require('markdown-it-katex'))
     },
+    lineNumbers: true
+  },
 
-    locales:{
-        '/':{
-            lang: '简体中文',
-            title: 'LAMMPS教程',
-            description : '这是LAMMPS的教程网站，提供不保证正确的教程和命令翻译',
-            lastUpdated: '上次更新',
-        },
-        '/en/': {
-            lang: 'English',
-            title: 'LAMMPS tutorial',
-            description: 'This is a unofficial LAMMPS tutorial community',
-            lastUpdated: 'last updated',
-        }
-    }
-});
-
+}

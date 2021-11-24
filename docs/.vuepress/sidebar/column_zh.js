@@ -33,6 +33,15 @@ module.exports = function() {
                 ['/zh/column/mc/TFMC', 'TFMC'],
                 
             ]
+        },
+        {
+            title: '建模',
+            collaspable: true,
+            sidebarDepth: 2,
+            children:[
+                ['/zh/column/modeling/material', '金属建模'],
+                
+            ]
         }
 
     ]
