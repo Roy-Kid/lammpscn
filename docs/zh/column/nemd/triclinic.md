@@ -17,9 +17,11 @@ $$
 a=(xhi-xlo,0,0)
 
 $$
+
 $$
 b=(xy,yhi-ylo)
 $$
+
 $$
 c=(xz, yz, zhi-zlo)
 
@@ -53,13 +55,12 @@ where A = | A | indicates the scalar length of A. The hat symbol (^) indicates t
 
 For consistency, the same rotation/inversion applied to the basis vectors must also be applied to atom positions, velocities, and any other vector quantities. This can be conveniently achieved by first converting to fractional coordinates in the old basis and then converting to distance coordinates in the new basis. The transformation is given by the following equation:
 
-$$\mathbf{x}=(\begin{array}{lll}
-\mathbf{a} & \mathbf{b} & \mathbf{c}) \cdot \frac{1}{V}\left(\begin{array}{l}
-\mathbf{B} \times \mathbf{C} \\
-\mathbf{C} \times \mathbf{A} \\
-\mathbf{A} \times \mathbf{B}
-\end{array}\right)
-\end{array}\cdot \mathbf{X}$$
+$$
+\begin{aligned}
+&c_{y}=\mathbf{C} \cdot(\widehat{\mathbf{A} \times \mathbf{B}}) \times \hat{\mathbf{A}}=\frac{\mathbf{B} \cdot \mathbf{C}-b_{x} c_{x}}{b_{y}} \\
+&c_{z}=|\mathbf{C} \cdot(\widehat{\mathbf{A} \times \mathbf{B}})|=\sqrt{C^{2}-c_{x}^{2}-c_{y}^{2}}
+\end{aligned}
+$$
 
 where V is the volume of the box, X is the original vector quantity and x is the vector in the LAMMPS basis.
 
