@@ -1,5 +1,6 @@
 module.exports = function () {
     return [
+        'zh/hello/',
         {
             title: '第一堂课: Linux',
             collapsable: true,
