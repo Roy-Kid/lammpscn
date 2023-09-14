@@ -16,6 +16,10 @@ features:
 # lammpscn
 ![](lammps.org.cn)旨在减低初学者入门LAMMPS时难度，让各位将学习软件的时间节省下来，用在实际的科研工作中. 一个良性发展的社区离不开每个人的贡献, 如果人人都可以把自己学习到的或者解决的困难整理下来供别人参考, 将会极大地促进软件用户群的发展和解决所有人的时间. 
 
+# 网站重构计划
+
+硕士三年我恶补了基本理论知识，对lammps的理解更加深入，现在回过头来再看感觉这个教程有点过于玩笑。我决定停止对这个版本的更新，重新打磨相关的内容。新仓库的连接是![lammpscn2](https://github.com/Roy-Kid/lammpscn2). 新网站决定采用material for mkdocs。具体的计划请见![proposal](https://docs.google.com/document/d/1EHINszO0ippcxRpoI2yF1nU6VgLX0-iPtphQ_u5Bj58/edit?usp=sharing). 这将囊括我在phd期间学到的所有东西的整理。诚恳希望各位加入，一起完善相关内容
+
 # 插播一条广告♪(´ε｀ )
 
 我们的新书**Extending and Modifying LAMMPS Writing Your Own Source Code: A pragmatic guide to extending LAMMPS as per custom simulation requirements** 正式出版了. 这本书由Valdosta State University的Shafat Mubin和本人共同完成, 由PACKT出版社出版, 核心开发者Dr. Steven Phlimption 倾情力荐, 并在LAMMPS官网展示:
