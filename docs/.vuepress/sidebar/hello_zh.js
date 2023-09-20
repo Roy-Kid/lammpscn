@@ -70,6 +70,7 @@ module.exports = function () {
             sidebarDepth: 3,
             children: [
                 ['/zh/hello/novice/install', '安装'],
+                ['/zh/hello/novice/WSL/WSL_LAMMPS_GPU', '在Windows上优雅地使用LAMMPS'],
                 ['/zh/hello/novice/script_ele', '脚本入门'],
                 ['/zh/hello/novice/run', '启动计算'],
                 ['/zh/hello/novice/output', '系统输出'],
